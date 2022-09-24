@@ -1,35 +1,44 @@
-`timescale 1ns/1ps
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date: 2022/09/24 17:29:12
+// Design Name: 
+// Module Name: Dmux_t
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
 
-module Dmux_1x4_4bit_t;
-wire [3:0]a;
-wire [3:0]b;
-wire [3:0]c;
-wire [3:0]d;
-reg [1:0]sel = 2'b0;
-reg [3:0]in = 4'b0000;
 
-Dmux_1x4_4bit m1(
-    .in (in),
-    .a (a),
-    .b (b),
-    .c (c),
-    .d (d),
-    .sel (sel)
-    
-);
-// uncommment and add "+access+r" to your nverilog command to dump fsdb waveform on NTHUCAD
-// initial begin
-//      $fsdbDumpfile("MUX.fsdb");
-//      $fsdbDumpvars;
-// end
+`timescale 1ns / 1ps
+
+module test_Dmux_1x4_4bit;
+reg [3:0] in;
+reg [1:0] sel;
+wire [3:0] a, b, c, d;
+
+Dmux_1x4_4bit D1(in, a, b, c, d, sel);
 
 initial begin
-    repeat (8)begin
-        #1 sel = sel + 2'b1;
-        repeat (2 ** 4) begin
-            #1 in = in + 4'b1;
+    in = 4'd0;
+    sel = 2'd0;
+    repeat(2 ** 4)begin
+        repeat( 2 ** 2 - 1)begin
+            #10  sel = sel + 1'b1;
         end
+        #10  sel = 2'd0;
+        in  = in + 1'b1;
     end
-    #1 $finish;
+    #10 $finish;
 end
 endmodule

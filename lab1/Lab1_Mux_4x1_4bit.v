@@ -25,9 +25,9 @@ module Dmux_1x4_4bit(in, a, b, c, d, sel);
     input [4-1:0] in;
     input [2-1:0] sel;
     output [4-1:0] a, b, c, d;
-    wire [3:0] ad, bc;
+    wire [3:0] ab, cd;
 
-    Dmux_1x2_4bit ADBC(in, ad, bc, sel[1]);
-    Dmux_1x2_4bit AD(in, a, d, sel[0]);
-    Dmux_1x2_4bit BC(in, b, c, sel[0]);
+    Dmux_1x2_4bit ABCD(in, ab, cd, sel[1]);
+    Dmux_1x2_4bit AB(ab, a, b, sel[0]);
+    Dmux_1x2_4bit CD(cd, c, d, sel[0]);
 endmodule
