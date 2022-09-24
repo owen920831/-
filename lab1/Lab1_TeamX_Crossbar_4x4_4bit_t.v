@@ -8,7 +8,7 @@ module Crossbar_4x4_4bit_t;
     reg [4:0] control = 5'b00000;
     wire [3:0] out1, out2, out3, out4;
 
-    Crossbar_4x4_4bit(in1, in2, in3, in4, out1, out2, out3, out4, control);
+    Crossbar_4x4_4bit c1(in1, in2, in3, in4, out1, out2, out3, out4, control);
 
     // uncommment and add "+access+r" to your nverilog command to dump fsdb waveform on NTHUCAD
     // initial begin
