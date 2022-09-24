@@ -15,10 +15,9 @@ module Toggle_Flip_Flop(clk, q, t, rst_n);
     input t;
     input rst_n;
     output q;
-    wire _q, xor1, and1;
+    wire xor1, and1;
 
-    not n1(_q, q);
-    Xor x1(t, _q, xor1);
+    Xor x1(t, q, xor1);
     and a1(and1, xor1, rst_n);
     D_Flip_Flop d1(clk, and1, q);
 endmodule

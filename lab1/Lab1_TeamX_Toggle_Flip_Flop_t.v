@@ -6,6 +6,7 @@ module Toggle_Flip_Flop_t;
     reg rst_n = 1'b0;
     wire q;
     // generate clk
+    initial #100 $finish;
     always#(1) clk = ~clk;
     always#(4) rst_n = ~rst_n;
     // test instance instantiation

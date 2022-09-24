@@ -1,35 +1,33 @@
-`timescale 1ns / 1ps
+`timescale 1ns/1ps
 
-module Mux_2x1_4bit(a, b, sel, f);
-    input a, b, sel;
-    output f;
-    wire w1, w2;
+module Dmux_1x2_4bit(in, a, b, sel);
+    input [4-1:0] in;
+    input sel;
+    output [4-1:0] a, b;
     wire _sel;
-    not g1(_sel, sel);
-    and g2 (w1, _sel, a);
-    and g3 (w2, sel, b);
-    or g4 (f, w1, w2);
 
+    not Not(_sel, sel);
+
+    and g3a(a[3], in[3], _sel);
+    and g3b(b[3], in[3], sel);
+
+    and g2a(a[2], in[2], _sel);
+    and g2b(b[2], in[2], sel);
+
+    and g1a(a[1], in[1], _sel);
+    and g1b(b[1], in[1], sel);
+
+    and g0a(a[0], in[0], _sel);
+    and g0b(b[0], in[0], sel);
 endmodule
 
-module Mux_4x1_4bit(a, b, c, d, sel, f);
-    input [4-1:0] a, b, c, d;
+module Dmux_1x4_4bit(in, a, b, c, d, sel);
+    input [4-1:0] in;
     input [2-1:0] sel;
-    output [4-1:0] f;
-    wire [3:0] w1, w2;
-    Mux_2x1_4bit g11(a[3], c[3], sel[1], w1[3]);
-    Mux_2x1_4bit g22(b[3], d[3], sel[1], w2[3]);
-    Mux_2x1_4bit g33(w1[3], w2[3], sel[0], f[3]);
-    
-    Mux_2x1_4bit g1(a[2], c[2], sel[1], w1[2]);
-    Mux_2x1_4bit g2(b[2], d[2], sel[1], w2[2]);
-    Mux_2x1_4bit g3(w1[2], w2[2], sel[0], f[2]);
-    
-    Mux_2x1_4bit g4(a[1], c[1], sel[1], w1[1]);
-    Mux_2x1_4bit g5(b[1], d[1], sel[1], w2[1]);
-    Mux_2x1_4bit g6(w1[1], w2[1], sel[0], f[1]);
-    
-    Mux_2x1_4bit g7(a[0], c[0], sel[1], w1[0]);
-    Mux_2x1_4bit g8(b[0], d[0], sel[1], w2[0]);
-    Mux_2x1_4bit g9(w1[0], w2[0], sel[0], f[0]);
+    output [4-1:0] a, b, c, d;
+    wire [3:0] ad, bc;
+
+    Dmux_1x2_4bit ADBC(in, ad, bc, sel[1]);
+    Dmux_1x2_4bit AD(in, a, d, sel[0]);
+    Dmux_1x2_4bit BC(in, b, c, sel[0]);
 endmodule
