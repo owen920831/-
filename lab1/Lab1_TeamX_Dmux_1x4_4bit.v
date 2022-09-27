@@ -28,6 +28,6 @@ module Dmux_1x4_4bit(in, a, b, c, d, sel);
     wire [3:0] ab, cd;
 
     Dmux_1x2_4bit ABCD(in, ab, cd, sel[1]);
-    Dmux_1x2_4bit AB(in, a, b, sel[0]);
-    Dmux_1x2_4bit CD(in, c, d, sel[0]);
+    Dmux_1x2_4bit AB(ab, a, b, sel[0]);
+    Dmux_1x2_4bit CD(cd, c, d, sel[0]);
 endmodule

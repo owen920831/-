@@ -24,7 +24,7 @@ module Dmux_1x4_4bit_t;
     // end
 
     initial begin
-        repeat (8)begin
+        repeat (3)begin
             #1 sel = sel + 2'b1;
         end
         #1 $finish;
