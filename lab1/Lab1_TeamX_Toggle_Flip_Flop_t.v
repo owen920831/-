@@ -22,5 +22,16 @@ module Toggle_Flip_Flop_t;
     //      $fsdbDumpvars;
     // end
     // brute force 
-    always #2 t = ~t;
+    initial begin
+        @(negedge clk) t = 1'b1;
+        @(negedge clk) t = 1'b0;
+        @(negedge clk) t = 1'b1;
+        @(negedge clk) t = 1'b1;
+        @(negedge clk) t = 1'b1;
+        @(negedge clk) t = 1'b0;
+        @(negedge clk) t = 1'b1;
+        @(negedge clk) t = 1'b0;
+        @(negedge clk) t = 1'b0;
+        @(negedge clk) $finish;
+    end
 endmodule
