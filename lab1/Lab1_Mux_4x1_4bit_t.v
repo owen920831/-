@@ -3,7 +3,7 @@
 `timescale 1ns/1ps
 
 module Mux_4x1_4bit_t;
-    reg [3:0]a = 4'b0000;
+    reg [3:0]a = 4'b0001;
     reg [3:0]b = 4'b0010;
     reg [3:0]c = 4'b0100;
     reg [3:0]d = 4'b1000;
