@@ -129,6 +129,4 @@ module Carry_Look_Ahead_Adder_8bit(a, b, c0, s, c8);
     Carry_Look_Ahead_Adder_4bit zero_to_three(a[3:0], b[3:0], c0, s[3:0], c0_3);
     //Carry_Look_Ahead_Adder_2bit c4(a, b, cin, sum, c4);
     Carry_Look_Ahead_Adder_4bit four_to_seven(a[7:4], b[7:4], c4, s[7:4], c8);
-    
-
 endmodule
