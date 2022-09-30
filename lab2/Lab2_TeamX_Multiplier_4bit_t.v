@@ -1,3 +1,4 @@
+
 `timescale 1ns / 1ps
 module test_Multiplier_4bit;
     reg [4-1:0] a, b;
