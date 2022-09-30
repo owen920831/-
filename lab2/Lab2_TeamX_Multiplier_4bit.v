@@ -64,7 +64,7 @@ module Multiplier_4bit(a, b, p);
     output [8-1:0] p;
     wire [3:0] b0a, b1a, b2a, b3a;
     wire [12:0] c;
-    wire [5:0] s;
+    wire [6:0] s;
 
     AND b0a0(a[0], b[0], p[0]); //p[0]
     AND b0a1(a[1], b[0], b0a[1]);

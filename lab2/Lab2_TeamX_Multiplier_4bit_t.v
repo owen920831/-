@@ -14,6 +14,7 @@ module test_Multiplier_4bit;
                 #1
                 a = a + 1'b1;
             end
+            #1
             b = b + 1'b1;
         end
         $finish;
