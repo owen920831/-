@@ -9,8 +9,8 @@ module test_Multiplier_4bit;
     initial begin
         a = 4'b0000;
         b = 4'b0000;
-        repeat(2 ** 4 -1) begin
-            repeat(2 ** 4 - 1) begin          
+        repeat(2 ** 4) begin
+            repeat(2 ** 4) begin          
                 #1
                 a = a + 1'b1;
             end
