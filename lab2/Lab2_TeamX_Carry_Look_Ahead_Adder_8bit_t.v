@@ -12,8 +12,8 @@ module test_Carry_Look_Ahead_Adder_8bit;
         a = 8'b00000000;
         b = 8'b00000000;
         c0 = 1'b0;
-        repeat(2 ** 8 -1) begin
-            repeat(2 ** 8 - 1) begin          
+        repeat(2 ** 8 ) begin
+            repeat(2 ** 8) begin          
                 #1
                 c0 = c0 + 1'b1;
                 #1

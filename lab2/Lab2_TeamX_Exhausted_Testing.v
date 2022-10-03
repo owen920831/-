@@ -15,7 +15,6 @@ module Exhausted_Testing(a, b, cin, error, done);
     reg done = 1'b0;
     reg error = 1'b0;
 
-
     // output from the test instance.
     wire [4-1:0] sum;
     wire cout;
@@ -58,6 +57,13 @@ module Exhausted_Testing(a, b, cin, error, done);
         // #4
         // setting the done signal
         // done = 1'b1;
+        repeat (2 ** 9) begin
+            #1 error = ({cout, sum} === a + b + cin)? 1'b0: 1'b1; 
+            #4 {a, b, cin} = {a, b, cin} + 1'b1;
+        end
+        done = 1'b1;
+        #5 done = 1'b0;
+        //#1 $finish;
     end
 
 endmodule
