@@ -1,11 +1,17 @@
 `timescale 1ns/1ps
 
-module Decode_And_Execute(rs, rt, sel, rd);
+module Decode_And_Execute(rs, rt, sel, seg, an);
 input [4-1:0] rs, rt;
 input [3-1:0] sel;
-output [4-1:0] rd;
+output [6:0] seg;
+output [3:0] an;
+wire [4-1:0] rd;
 wire [3:0] sub, add, bit_or, bit_and, rshift, lshift, cmp_lt, cmp_eq;
 
+AND a0(1'b1, 1'b1, an[3]); // assign an to 1
+AND a2(1'b1, 1'b1, an[2]); // assign an to 1
+AND a3(1'b1, 1'b1, an[1]); // assign an to 1
+AND a4(1'b1, 1'b0, an[0]); // assign an to 1
 SUB s1(rs, rt, sub);
 ADD a1(rs, rt, add);
 BIT_OR b1(rs, rt, bit_or);
@@ -18,6 +24,7 @@ Mux_8x1 m0(sub[0], add[0], bit_or[0], bit_and[0], rshift[0], lshift[0], cmp_lt[0
 Mux_8x1 m1(sub[1], add[1], bit_or[1], bit_and[1], rshift[1], lshift[1], cmp_lt[1], cmp_eq[1], sel, rd[1]);
 Mux_8x1 m2(sub[2], add[2], bit_or[2], bit_and[2], rshift[2], lshift[2], cmp_lt[2], cmp_eq[2], sel, rd[2]);
 Mux_8x1 m3(sub[3], add[3], bit_or[3], bit_and[3], rshift[3], lshift[3], cmp_lt[3], cmp_eq[3], sel, rd[3]);
+signal2seven_digit sss(rd, seg);
 endmodule
 
 module NOT (
@@ -292,4 +299,33 @@ module CMP_EQ (
     AND a2(e2, e3, y);
     AND a3(x, y, out[0]);
 
+endmodule
+
+module signal2seven_digit(
+    a, seg
+);
+    input [3:0] a;
+    output [6:0] seg;
+    reg [6:0] seg;
+
+    always @(*) begin
+    case (a)
+        4'b0000 : seg <= 7'b0000001;
+        4'b0001 : seg <= 7'b1001111;
+        4'b0010 : seg <= 7'b0010010;
+        4'b0011 : seg <= 7'b0000110;
+        4'b0100 : seg <= 7'b1001100;
+        4'b0101 : seg <= 7'b0100100;
+        4'b0110 : seg <= 7'b0100000;
+        4'b0111 : seg <= 7'b0001111;
+        4'b1000 : seg <= 7'b0000000;
+        4'b1001 : seg <= 7'b0000100;  
+        4'b1010 : seg <= 7'b0001000;
+        4'b1011 : seg <= 7'b1100000;
+        4'b1100 : seg <= 7'b0110001;
+        4'b1101 : seg <= 7'b1000010;
+        4'b1110 : seg <= 7'b0110000;
+        default : seg <= 7'b0111000;
+    endcase
+    end
 endmodule
