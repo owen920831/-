@@ -28,9 +28,33 @@ always@(posedge clk)begin
         if(cnt3 == 4'd2)
         begin 
             r3 <= 1'b1; 
-            cnt3 <= 4'd0; end else begin cnt3 <= cnt3 + 4'b1; r3 <= 1'b0; end
-        if(cnt4 == 4'd3)begin r4 <= 1'b1; cnt4 <= 4'd0; end else begin cnt4 <= cnt4 + 4'b1; r4 <= 1'b0; end
-        if(cnt8 == 4'd7)begin r8 <= 1'b1; cnt8 <= 4'd0; end else begin cnt8 <= cnt8 + 4'b1; r8 <= 1'b0; end
+            cnt3 <= 4'd0; 
+        end 
+        else 
+        begin 
+            cnt3 <= cnt3 + 4'b1; 
+            r3 <= 1'b0; 
+        end
+        if(cnt4 == 4'd3)
+        begin 
+            r4 <= 1'b1; 
+            cnt4 <= 4'd0; 
+        end 
+        else 
+        begin 
+            cnt4 <= cnt4 + 4'b1; 
+            r4 <= 1'b0; 
+        end
+        if(cnt8 == 4'd7)
+        begin 
+            r8 <= 1'b1; 
+            cnt8 <= 4'd0; 
+        end 
+        else 
+        begin 
+            cnt8 <= cnt8 + 4'b1; 
+            r8 <= 1'b0; 
+        end
     end
     
 end
