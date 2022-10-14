@@ -8,7 +8,7 @@ module Memory (clk, ren, wen, addr, din, dout);
     output [8-1:0] dout;
 
     reg [8-1:0] dout;
-    reg [8-1:0] my_memory [0:127];
+    reg [8-1:0] my_memory [127:0];
 
     always @(posedge clk) begin
         if (ren)begin

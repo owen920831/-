@@ -9,14 +9,22 @@ module FIFO_8(clk, rst_n, wen, ren, din, dout, error);
     output error;
 
     reg [8-1:0] error_x;
-    reg [8-1:0] memory [0:8-1];
-    reg [2:0] front, rear;
+    reg [8-1:0] memory [0:8];
+    reg [3:0] front, rear;
     reg [8-1:0] dout;
     reg error;
-    wire [2:0] next_front, next_rear;
+    reg [3:0] next_front, next_rear;
 
-    assign next_front = front+1;
-    assign next_rear = rear+1;
+    always @(*) begin
+        next_front = front+1;
+        next_rear = rear+1;
+        if (next_front === 4'b1001)begin
+            next_front = 0;
+        end
+        if (next_rear === 4'b1001)begin
+            next_rear = 0;
+        end
+    end
 
     always @(posedge clk) begin
         if (!rst_n)begin
@@ -41,6 +49,7 @@ module FIFO_8(clk, rst_n, wen, ren, din, dout, error);
                 end
             end
             else if (wen && !ren)begin
+                $display("hh %b %b %b %b", next_rear, rear, next_front, front);
                 if (next_rear == front) begin
                     front <= front;
                     rear <= rear;
