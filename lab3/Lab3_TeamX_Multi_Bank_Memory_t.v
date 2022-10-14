@@ -4,8 +4,8 @@ module Multi_Bank_Memory_t;
 reg clk = 0;
 reg ren = 1'b0;
 reg wen = 1'b0;
-reg [6:0] waddr = 7'd0, radder = 0;
-reg [7:0] din = 8'd0;
+reg [10:0] waddr = 0, radder = 0;
+reg [7:0] din = 0;
 wire [7:0] dout;
 
 // specify duration of a clock cycle.
@@ -20,7 +20,7 @@ Multi_Bank_Memory mem(
     .wen(wen),
     .din(din),
     .waddr(waddr),
-    .raddr(raddr),
+    .raddr(radder),
     .dout(dout)
 );
 

@@ -13,7 +13,7 @@ module FIFO_8(clk, rst_n, wen, ren, din, dout, error);
     reg [3:0] front, rear;
     reg [8-1:0] dout;
     reg error;
-    reg [3:0] next_front, next_rear;
+    reg [3:0] next_front = 0, next_rear  = 0;
 
     always @(*) begin
         next_front = front+1;

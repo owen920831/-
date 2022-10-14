@@ -7,7 +7,6 @@ module FIFO_8(clk, rst_n, wen, ren, din, dout, error);
     output [8-1:0] dout;
     output error;
 
-    reg [8-1:0] error_x;
     reg [8-1:0] memory [0:8];
     reg [3:0] front, rear;
     reg [8-1:0] dout;
@@ -39,7 +38,7 @@ module FIFO_8(clk, rst_n, wen, ren, din, dout, error);
                     front <= front;
                     rear <= rear;
                     error <= 1;
-                    dout <= error_x;
+                    dout <= 0;
                 end
                 else begin
                     front <= next_front;
@@ -49,26 +48,30 @@ module FIFO_8(clk, rst_n, wen, ren, din, dout, error);
                 end
             end
             else if (wen && !ren)begin
-                $display("hh %b %b %b %b", next_rear, rear, next_front, front);
                 if (next_rear == front) begin
                     front <= front;
                     rear <= rear;
                     error <= 1;
-                    dout <= error_x;
+                    dout <= 0;
                 end
                 else begin
                     front <= front;
                     rear <= next_rear;
                     memory[next_rear] = din;
                     error <= 0;
-                    dout <= error_x;
+                    dout <= 0;
                 end
             end
             else begin
+                if (front == rear) begin
+                    error <= 1;
+                end 
+                else begin
+                    error <= 0;
+                end
                 front <= front;
                 rear <= rear;
-                error <= 0;
-                dout <= error_x;
+                dout <= 0;
             end
         end
     end
@@ -83,95 +86,72 @@ module Round_Robin_FIFO_Arbiter(clk, rst_n, wen, a, b, c, d, dout, valid);
     output [8-1:0] dout;
     output valid;
 
-    reg [2:0] counter; //算現在是要read abcd
-    reg read_a, read_b, read_c, read_d; 
-    reg [8-1:0] dout;
-    wire [8-1:0] a_output, b_output, c_output, d_output;
-    reg vaild;
-    wire [2:0] next_counter;
-    wire error_a, error_b, error_c, error_d;
+    reg [1:0] counter = 0;
+    wire [1:0] next_counter;
+    reg r0 = 0, r1 = 0, r2 = 0, r3 = 0;
+    wire [7:0] a_output, b_output, c_output, d_output;
+    reg valid = 0;
+    wire [8-1:0] dout;
 
+    assign next_counter = counter + 1;
+    or o[7:0](dout, a_output, b_output, c_output, d_output);
+    // assign dout = b_output;
 
-    assign next_counter = counter+1;
+    always @(wen, counter) begin
+        r0 = 0; r1 = 0; r2 = 0; r3 = 0;
+        r0 = (!wen[0] && (counter === 2'b00)) ? 1 : 0;
+        r1 = (!wen[1] && (counter === 2'b01)) ? 1 : 0;
+        r2 = (!wen[2] && (counter === 2'b10)) ? 1 : 0;
+        r3 = (!wen[3] && (counter === 2'b11)) ? 1 : 0;
+    end
 
-    FIFO_8 inputa(clk, rst_n, wen[0], read_a, a, a_output, error_a);
-    FIFO_8 inputb(clk, rst_n, wen[1], read_b, b, b_output, error_b);
-    FIFO_8 inputc(clk, rst_n, wen[2], read_c, c, c_output, error_c);
-    FIFO_8 inputd(clk, rst_n, wen[3], read_d, d, d_output, error_d);
+    FIFO_8 A(clk, rst_n, wen[0], r0, a, a_output, a_error);
+    FIFO_8 B(clk, rst_n, wen[1], r1, b, b_output, b_error);
+    FIFO_8 C(clk, rst_n, wen[2], r2, c, c_output, c_error);
+    FIFO_8 D(clk, rst_n, wen[3], r3, d, d_output, d_error);
 
     always @(posedge clk) begin
         counter <= next_counter;
         if (!rst_n) begin
             counter <= 0;
-            dout <= 0;
-            vaild <= 0;
-            read_a <= 0;
-            read_b <= 0;
-            read_c <= 0;
-            read_d <= 0;
+            valid <= 0;
         end
         else begin
             case (counter)
-                2'b01:begin
-                    read_a <= 1;
-                    read_b <= 0;
-                    read_c <= 0;
-                    read_d <= 0;
-                    if (error_a || wen[0]) begin
-                        vaild <= 0;
-                        dout <= 0;
+                2'b00 : begin
+                    if (a_error || wen[0]) begin
+                        valid <= 0;
                     end
                     else begin
-                        vaild <= 1;
-                        dout <= a_output;
+                        valid <= 1;
                     end
                 end
-                2'b10:begin
-                    read_a <= 0;
-                    read_b <= 1;
-                    read_c <= 0;
-                    read_d <= 0;
-                    if (error_b || wen[1]) begin
-                        vaild <= 0;
-                        dout <= 0;
+                2'b01 : begin
+                    if (b_error || wen[1]) begin
+                        valid <= 0;
                     end
                     else begin
-                        vaild <= 1;
-                        dout <= b_output;
+                        valid <= 1;
                     end
                 end
-                2'b11:begin
-                    read_a <= 0;
-                    read_b <= 0;
-                    read_c <= 1;
-                    read_d <= 0;
-                    if (error_c || wen[2]) begin
-                        vaild <= 0;
-                        dout <= 0;
+                2'b10 : begin
+                    if (c_error || wen[2]) begin
+                        valid <= 0;
                     end
                     else begin
-                        vaild <= 1;
-                        dout <= c_output;
+                        valid <= 1;
                     end
                 end
-                2'b00:begin
-                    read_a <= 0;
-                    read_b <= 0;
-                    read_c <= 0;
-                    read_d <= 1;
-                    if (error_d || wen[3]) begin
-                        vaild <= 0;
-                        dout <= 0;
+                2'b11 : begin
+                    if (d_error || wen[3]) begin
+                        valid <= 0;
                     end
                     else begin
-                        vaild <= 1;
-                        dout <= d_output;
+                        valid <= 1;
                     end
                 end
             endcase
         end
     end
-
-
 
 endmodule
