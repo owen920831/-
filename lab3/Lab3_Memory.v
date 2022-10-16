@@ -8,7 +8,6 @@ reg [6:0] addr = 7'd0;
 reg [7:0] din = 8'd0;
 wire [7:0] dout;
 
-<<<<<<< HEAD
 // specify duration of a clock cycle.
 parameter cyc = 10;
 
@@ -89,9 +88,5 @@ initial begin
     @(negedge clk)
     $finish;
 end
-=======
-    reg [8-1:0] dout;
-    reg [8-1:0] my_memory [127:0];
->>>>>>> 974a1b7137f7a7bdacf0c7e31bf0f83d72305496
 
 endmodule
