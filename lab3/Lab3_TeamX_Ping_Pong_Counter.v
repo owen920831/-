@@ -7,7 +7,7 @@ output direction;
 output [4-1:0] out;
 
 reg [3:0] out;
-reg direction = 1'b1;
+reg direction;
 always @(posedge clk) begin
     if (!rst_n) begin
         out <= 4'b0000;
