@@ -78,9 +78,5 @@ initial begin
 
 end
 
-always@(posedge clk) begin
-    #2;
-    $display($time, " out = %d  ||  direction = %b || clk = %b || rst_n = %b || enable = %b || prev =",out,direction, clk, rst_n, enable);
-end
 
 endmodule
