@@ -20,11 +20,11 @@ clock_divider c2(clk, dis_clk);
 
 wire derstn, rstn_out;
 debounce a(clk, rst_n, derstn);
-onepulse b(dis_clk, derstn, rstn_out);
+onepulse b(cnt_clk, derstn, rstn_out);
 
 wire deflip, flip_out;
 debounce c(clk, flip, deflip);
-onepulse d(dis_clk, deflip, flip_out);
+onepulse d(cnt_clk, deflip, flip_out);
 
 always @(posedge dis_clk) begin
     led_counter <= next_led_counter;
