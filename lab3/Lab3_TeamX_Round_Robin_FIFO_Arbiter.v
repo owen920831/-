@@ -90,68 +90,61 @@ module Round_Robin_FIFO_Arbiter(clk, rst_n, wen, a, b, c, d, dout, valid);
     wire [1:0] next_counter;
     reg r0 = 0, r1 = 0, r2 = 0, r3 = 0;
     wire [7:0] a_output, b_output, c_output, d_output;
-    reg valid = 0;
-    wire [8-1:0] dout;
+    reg valid = 0, tmp = 0;
+    reg [8-1:0] dout;
+    wire a_error, b_error, c_error, d_error;
 
     assign next_counter = counter + 1;
-    or o[7:0](dout, a_output, b_output, c_output, d_output);
-    // assign dout = b_output;
-
-    always @(wen, counter) begin
-        r0 = 0; r1 = 0; r2 = 0; r3 = 0;
-        r0 = (!wen[0] && (counter === 2'b00)) ? 1 : 0;
-        r1 = (!wen[1] && (counter === 2'b01)) ? 1 : 0;
-        r2 = (!wen[2] && (counter === 2'b10)) ? 1 : 0;
-        r3 = (!wen[3] && (counter === 2'b11)) ? 1 : 0;
-    end
-
-    FIFO_8 A(clk, rst_n, wen[0], r0, a, a_output, a_error);
-    FIFO_8 B(clk, rst_n, wen[1], r1, b, b_output, b_error);
-    FIFO_8 C(clk, rst_n, wen[2], r2, c, c_output, c_error);
-    FIFO_8 D(clk, rst_n, wen[3], r3, d, d_output, d_error);
 
     always @(posedge clk) begin
         counter <= next_counter;
         if (!rst_n) begin
             counter <= 0;
+            dout <= 0;
             valid <= 0;
         end
         else begin
-            case (counter)
-                2'b00 : begin
-                    if (a_error || wen[0]) begin
-                        valid <= 0;
-                    end
-                    else begin
-                        valid <= 1;
-                    end
-                end
-                2'b01 : begin
-                    if (b_error || wen[1]) begin
-                        valid <= 0;
-                    end
-                    else begin
-                        valid <= 1;
-                    end
-                end
-                2'b10 : begin
-                    if (c_error || wen[2]) begin
-                        valid <= 0;
-                    end
-                    else begin
-                        valid <= 1;
-                    end
-                end
-                2'b11 : begin
-                    if (d_error || wen[3]) begin
-                        valid <= 0;
-                    end
-                    else begin
-                        valid <= 1;
-                    end
-                end
-            endcase
+            if (counter == 2'b00 && !wen[0]) tmp <= 0;
+            else if (counter == 2'b01 && !wen[1]) tmp <= 0;
+            else if (counter == 2'b10 && !wen[2]) tmp <= 0;
+            else if (counter == 2'b11 && !wen[3]) tmp <= 0;
+            else tmp <= 1; 
         end
     end
+
+    always @(*) begin
+        if (!valid) begin
+            dout = 0;
+        end
+        else begin
+            if (counter == 2'b01) dout = a_output;
+            else if (counter == 2'b10) dout = b_output;
+            else if (counter == 2'b11) dout = c_output;
+            else dout = d_output;
+        end
+    end
+
+    always @(*) begin
+        if (counter == 2'b01) valid = !a_error && !tmp;
+        else if (counter == 2'b10) valid = !b_error && !tmp; 
+        else if (counter == 2'b11) valid = !c_error && !tmp; 
+        else valid = !d_error && !tmp; 
+    end
+
+    always @(*) begin
+        r0 = 0; r1 = 0; r2 = 0; r3 = 0;
+        if (!wen[0] && (counter == 2'b00)) r0 = 1;
+        else if (!wen[1] && (counter == 2'b01)) r1 = 1;
+        else if (!wen[2] && (counter == 2'b10)) r2 = 1;
+        else if (!wen[3] && (counter == 2'b11)) r3 = 1;
+        else begin
+            r0 = 0; r1 = 0; r2 = 0; r3 = 0;
+        end
+    end
+
+    FIFO_8 f0(clk, rst_n, wen[0], r0, a, a_output, a_error);
+    FIFO_8 f1(clk, rst_n, wen[1], r1, b, b_output, b_error);
+    FIFO_8 f2(clk, rst_n, wen[2], r2, c, c_output, c_error);
+    FIFO_8 f3(clk, rst_n, wen[3], r3, d, d_output, d_error);
 
 endmodule
