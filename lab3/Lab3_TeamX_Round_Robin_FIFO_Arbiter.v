@@ -96,17 +96,6 @@ module Round_Robin_FIFO_Arbiter(clk, rst_n, wen, a, b, c, d, dout, valid);
 
     assign next_counter = counter + 1;
 
-    always @(wen or counter) begin
-        r0 = 0; r1 = 0; r2 = 0; r3 = 0;
-        if (!wen[0] && (counter == 2'b00)) r0 = 1;
-        else if (!wen[1] && (counter == 2'b01)) r1 = 1;
-        else if (!wen[2] && (counter == 2'b10)) r2 = 1;
-        else if (!wen[3] && (counter == 2'b11)) r3 = 1;
-        else begin
-            r0 = 0; r1 = 0; r2 = 0; r3 = 0;
-        end
-    end
-
     always @(posedge clk) begin
         counter <= next_counter;
         if (!rst_n) begin
@@ -142,8 +131,20 @@ module Round_Robin_FIFO_Arbiter(clk, rst_n, wen, a, b, c, d, dout, valid);
         else valid = !d_error && !tmp; 
     end
 
+    always @(*) begin
+        r0 = 0; r1 = 0; r2 = 0; r3 = 0;
+        if (!wen[0] && (counter == 2'b00)) r0 = 1;
+        else if (!wen[1] && (counter == 2'b01)) r1 = 1;
+        else if (!wen[2] && (counter == 2'b10)) r2 = 1;
+        else if (!wen[3] && (counter == 2'b11)) r3 = 1;
+        else begin
+            r0 = 0; r1 = 0; r2 = 0; r3 = 0;
+        end
+    end
+
     FIFO_8 f0(clk, rst_n, wen[0], r0, a, a_output, a_error);
     FIFO_8 f1(clk, rst_n, wen[1], r1, b, b_output, b_error);
     FIFO_8 f2(clk, rst_n, wen[2], r2, c, c_output, c_error);
     FIFO_8 f3(clk, rst_n, wen[3], r3, d, d_output, d_error);
+
 endmodule
