@@ -1,30 +1,92 @@
 `timescale 1ns/1ps
 
-module Memory (clk, ren, wen, addr, din, dout);
-    input clk;
-    input ren, wen;
-    input [7-1:0] addr;
-    input [8-1:0] din;
-    output [8-1:0] dout;
+module Memory_t;
+reg clk = 0;
+reg ren = 1'b0;
+reg wen = 1'b0;
+reg [6:0] addr = 7'd0;
+reg [7:0] din = 8'd0;
+wire [7:0] dout;
 
-    reg [8-1:0] dout;
-    reg [8-1:0] my_memory [127:0];
+// specify duration of a clock cycle.
+parameter cyc = 10;
 
-    always @(posedge clk) begin
-        if (ren)begin
-            dout[8-1:0] <= my_memory[addr];
-        end
-        else begin
-            dout <= 0;
-        end
-    end
-    
-    always @(posedge clk) begin
-        if (wen && !ren) begin
-            my_memory[addr] <= din;
-        end
-        else begin
-            my_memory[addr] <= my_memory[addr];
-        end
-    end
+// generate clock.
+always#(cyc/2)clk = !clk;
+
+Memory mem(
+    .clk(clk),
+    .ren(ren),
+    .wen(wen),
+    .din(din),
+    .addr(addr),
+    .dout(dout)
+);
+
+// uncommment and add "+access+r" to your nverilog command to dump fsdb waveform on NTHUCAD
+// initial begin
+//     $fsdbDumpfile("Memory.fsdb");
+//     $fsdbDumpvars;
+// end
+
+initial begin
+    @(negedge clk)
+    addr = 7'd87;
+    din = 8'd87;
+    ren = 1'b0;
+    wen = 1'b1;
+    @(negedge clk)
+    addr = 7'd87;
+    din = 8'd87;
+    ren = 1'b1;
+    wen = 1'b1;
+    @(negedge clk)
+    addr = 7'd87;
+    din = 8'd87;
+    ren = 1'b1;
+    wen = 1'b0;
+    @(negedge clk)
+    addr = 7'd15;
+    din = 8'd85;
+    ren = 1'b1;
+    wen = 1'b1;
+    @(negedge clk)
+    addr = 7'd15;
+    din = 8'd0;
+    ren = 1'b0;
+    wen = 1'b1;
+    @(negedge clk)
+    addr = 7'd127;
+    din = 8'd77;
+    ren = 1'b1;
+    wen = 1'b0;
+    @(negedge clk)
+    addr = 7'd15;
+    din = 8'd66;
+    ren = 1'b0;
+    wen = 1'b1;
+    @(negedge clk)
+    addr = 7'd127;
+    din = 8'd89;
+    ren = 1'b1;
+    wen = 1'b1;
+    @(negedge clk)
+    addr = 7'd127;
+    din = 8'd89;
+    ren = 1'b0;
+    wen = 1'b1;
+    @(negedge clk)
+    addr = 7'd15;
+    din = 8'd66;
+    ren = 1'b1;
+    wen = 1'b1;
+    @(negedge clk)
+    addr = 7'd127;
+    din = 8'd0;
+    ren = 1'b1;
+    wen = 1'b0;
+    @(negedge clk)
+    $finish;
+end
+
 endmodule
