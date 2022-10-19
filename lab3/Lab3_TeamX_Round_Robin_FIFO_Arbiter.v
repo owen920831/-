@@ -132,14 +132,10 @@ module Round_Robin_FIFO_Arbiter(clk, rst_n, wen, a, b, c, d, dout, valid);
     end
 
     always @(*) begin
-        r0 = 0; r1 = 0; r2 = 0; r3 = 0;
-        if (!wen[0] && (counter == 2'b00)) r0 = 1;
-        else if (!wen[1] && (counter == 2'b01)) r1 = 1;
-        else if (!wen[2] && (counter == 2'b10)) r2 = 1;
-        else if (!wen[3] && (counter == 2'b11)) r3 = 1;
-        else begin
-            r0 = 0; r1 = 0; r2 = 0; r3 = 0;
-        end
+        r0 = (!wen[0] && (counter == 2'b00)) ? 1 : 0;
+        r1 = (!wen[1] && (counter == 2'b01)) ? 1 : 0;
+        r2 = (!wen[2] && (counter == 2'b10)) ? 1 : 0;
+        r3 = (!wen[3] && (counter == 2'b11)) ? 1 : 0;
     end
 
     FIFO_8 f0(clk, rst_n, wen[0], r0, a, a_output, a_error);
