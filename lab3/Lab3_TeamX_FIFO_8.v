@@ -49,7 +49,6 @@ module FIFO_8(clk, rst_n, wen, ren, din, dout, error);
                 end
             end
             else if (wen && !ren)begin
-                $display("hh %b %b %b %b", next_rear, rear, next_front, front);
                 if (next_rear == front) begin
                     front <= front;
                     rear <= rear;

@@ -6,7 +6,7 @@ module Memory (clk, ren, wen, addr, din, dout);
     input [8-1:0] din;
     output [8-1:0] dout;
 
-    reg [8-1:0] dout;
+    reg [8-1:0] dout = 0;
     reg [8-1:0] my_memory [127:0];
 
     always @(posedge clk) begin
@@ -20,7 +20,7 @@ module Memory (clk, ren, wen, addr, din, dout);
     
     always @(posedge clk) begin
         if (wen && !ren) begin
-            my_memory[addr] <= din;
+            my_memory[addr] <= din[8-1:0];
         end
         else begin
             my_memory[addr] <= my_memory[addr];
@@ -38,8 +38,8 @@ module Sub_Bank_Memory (clk, ren, wen, waddr, raddr, din, dout);
 
     wire [8-1:0] dout;
     wire [8-1:0] a_output, b_output, c_output, d_output;
-    wire [7-1:0] addr;
     wire r0, r1, r2, r3, w0, w1, w2, w3;
+    wire [6:0] addr0, addr1, addr2, addr3;
 
     assign r0 = (ren && (raddr[8:7] == 2'b00)) ? 1 : 0;
     assign r1 = (ren && (raddr[8:7] == 2'b01)) ? 1 : 0;
@@ -51,13 +51,15 @@ module Sub_Bank_Memory (clk, ren, wen, waddr, raddr, din, dout);
     assign w2 = (wen && (waddr[8:7] == 2'b10)) ? 1 : 0;
     assign w3 = (wen && (waddr[8:7] == 2'b11)) ? 1 : 0;
 
-    Memory sbank0(clk, r0, w0, addr, din, a_output);
-    Memory sbank1(clk, r1, w1, addr, din, b_output);
-    Memory sbank2(clk, r2, w2, addr, din, c_output);
-    Memory sbank3(clk, r3, w3, addr, din, d_output);
+    assign addr0 = (r0) ? raddr[6:0] : waddr[6:0];
+    assign addr1 = (r1) ? raddr[6:0] : waddr[6:0];
+    assign addr2 = (r2) ? raddr[6:0] : waddr[6:0];
+    assign addr3 = (r3) ? raddr[6:0] : waddr[6:0];
 
-
-    assign addr = (ren) ? raddr[6:0] : waddr[6:0];
+    Memory sbank0(clk, r0, w0, addr0, din, a_output);
+    Memory sbank1(clk, r1, w1, addr1, din, b_output);
+    Memory sbank2(clk, r2, w2, addr2, din, c_output);
+    Memory sbank3(clk, r3, w3, addr3, din, d_output);
 
     or o1 [7:0] (dout, a_output, b_output, c_output, d_output); //結果
 

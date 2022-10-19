@@ -31,39 +31,39 @@ Multi_Bank_Memory mem(
 // end
 
     initial begin
-        @(negedge clk)
+        @(negedge clk) //將20寫入addr[1]
             waddr = 1;
             radder = 0;
             wen = 1;
             ren = 0;
-            din = 1;
-        @(negedge clk)
+            din = 20;
+        @(negedge clk) //將200寫入addr[200]，同時讀取 addr[1]
             waddr = 200;
             radder = 1;
             wen = 1;
             ren = 1;
             din = 200;
-        @(negedge clk)
+        @(negedge clk) //再來讀取addr[200]
             waddr = 1;
             radder = 200;
             wen = 0;
             ren = 1;
             din = 200;
-        @(negedge clk)
-            waddr = 1;
+        @(negedge clk) //將201寫入addr[201]
+            waddr = 201;
             radder = 201;
-            wen = 0;
-            ren = 1;
+            wen = 1;
+            ren = 0;
             din = 201;
-        @(negedge clk)
+        @(negedge clk) //將202寫入addr[201]，並同時讀取addr[200]
             waddr = 201;
             radder = 200;
             wen = 1;
             ren = 1;
-            din = 20;
-        @(negedge clk)
-            waddr = 201;
-            radder = 201;
+            din = 202;
+        @(negedge clk) //讀取 addr[202]
+            waddr = 100;
+            radder = 202;
             wen = 0;
             ren = 1;
             din = 20;
