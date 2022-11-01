@@ -62,8 +62,6 @@ module Sub_Bank_Memory (clk, ren, wen, waddr, raddr, din, dout);
     Memory sbank3(clk, r3, w3, addr3, din, d_output);
 
     or o1 [7:0] (dout, a_output, b_output, c_output, d_output); //結果
-
-
 endmodule
 
 
@@ -94,6 +92,5 @@ module Multi_Bank_Memory (clk, ren, wen, waddr, raddr, din, dout);
     Sub_Bank_Memory bank2(clk, r2, w2, waddr, raddr, din, c_output);
     Sub_Bank_Memory bank3(clk, r3, w3, waddr, raddr, din, d_output);
 
-    or o1 [7:0] (dout, a_output, b_output, c_output, d_output); //結果
-    
+    or o1 [7:0] (dout, a_output, b_output, c_output, d_output); //結果    
 endmodule
