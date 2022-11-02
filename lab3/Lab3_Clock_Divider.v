@@ -61,6 +61,4 @@ module Clock_Divider (clk, rst_n, sel, clk1_2, clk1_4, clk1_8, clk1_3, dclk);
         endcase
     end
 
-
-
 endmodule
