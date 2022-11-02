@@ -236,7 +236,7 @@ module cmp_1bit (
     AND a2(_a, _b, and__a_b);
     OR o1(and_ab, and__a_b, e);
     AND a3(a, _b, al);
-    AND a4(_a, b);
+    AND a4(_a, b, bl);
 endmodule
 
 module CMP_LT (
