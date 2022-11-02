@@ -8,37 +8,59 @@ module Clock_Divider (clk, rst_n, sel, clk1_2, clk1_4, clk1_8, clk1_3, dclk);
     output clk1_8;
     output clk1_3;
     output dclk;
-
+    
     reg dclk;
-    reg [3:0] counter;
-    wire [3:0] next_counter;
-    reg clk1_2, clk1_4, clk1_3, clk1_8;
+    reg [3:0] counter_2, counter_3, counter_4, counter_8;
+    reg [3:0] n_counter_2, n_counter_3, n_counter_4, n_counter_8;
+    reg vaild;
+    wire clk1_2, clk1_4, clk1_3, clk1_8;
 
-    assign next_counter = counter + 1;
+    assign clk1_2 = ((!rst_n && vaild) || (counter_2 == 0))? 1:0;
+    assign clk1_3 = ((!rst_n && vaild) || (counter_3 == 0))? 1:0;
+    assign clk1_4 = ((!rst_n && vaild) || (counter_4 == 0))? 1:0;
+    assign clk1_8 = ((!rst_n && vaild) || (counter_8 == 0))? 1:0;
+
+    always @(*) begin
+        if (counter_2 == 1) n_counter_2 = 0;
+        else n_counter_2 = counter_2+1;
+
+        if (counter_3 == 2) n_counter_3 = 0;
+        else n_counter_3 = counter_3+1;
+
+        if (counter_4 == 3) n_counter_4 = 0;
+        else n_counter_4 = counter_4+1;
+
+        if (counter_8 == 7) n_counter_8 = 0;
+        else n_counter_8 = counter_8+1;
+    end
 
     always @(posedge clk) begin
-        counter <= next_counter;
-        clk1_2 <= counter[1];
-        clk1_3 <= counter[1] && counter[0];
-        clk1_4 <= counter[2];
-        clk1_8 <= counter[3];
         if (!rst_n) begin
-            clk1_2 <= 1;
-            clk1_4 <= 1;
-            clk1_3 <= 1;
-            clk1_8 <= 1;
-            dclk <= 0;
-            counter <= 3'b000;
+            vaild <= 1;
+            counter_2 <= 0;
+            counter_3 <= 0;
+            counter_4 <= 0;
+            counter_8 <= 0;
         end
         else begin
-            case (sel)
-                2'b00: dclk <= clk1_3;
-                2'b01: dclk <= clk1_2;
-                2'b10: dclk <= clk1_4;
-                2'b11: dclk <= clk1_8;
-                default: dclk <= 0;
-            endcase
+            vaild <= 0;
+            counter_2 <= n_counter_2;
+            counter_3 <= n_counter_3;
+            counter_4 <= n_counter_4;
+            counter_8 <= n_counter_8;
         end
     end
+
+    always @(*) begin
+        case (sel)
+            2'b00: dclk = clk1_3;
+            2'b01: dclk = clk1_2;
+            2'b10: dclk = clk1_4;
+            2'b11: dclk = clk1_8;
+            default: dclk = 0;
+        endcase
+    end
+
+
 
 endmodule
