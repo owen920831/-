@@ -1,50 +1,64 @@
 `timescale 1ns/1ps
 
 module Clock_Divider (clk, rst_n, sel, clk1_2, clk1_4, clk1_8, clk1_3, dclk);
-input clk, rst_n;
-input [2-1:0] sel;
-output clk1_2;
-output clk1_4;
-output clk1_8;
-output clk1_3;
-output dclk;
-
-reg r2,r4,r8,r3;
-reg [3:0] cnt2,cnt4,cnt8,cnt3;
-
-always@(posedge clk)begin
-
-    if(rst_n == 0)begin cnt2 <= 4'd0; cnt3 <= 4'd0; cnt4 <= 4'd0; cnt8 <= 4'd0; r2 <= 1'b1; r3 <= 1'b1; r4 <= 1'b1; r8 <= 1'b1;end
-    else begin
-        if(cnt2 == 4'd1)begin r2 <= 1'b1; cnt2 <= 4'd0; end else begin cnt2 <= cnt2 + 4'b1; r2 <= 1'b0; end
-        if(cnt3 == 4'd2)begin r3 <= 1'b1; cnt3 <= 4'd0; end else begin cnt3 <= cnt3 + 4'b1; r3 <= 1'b0; end
-        if(cnt4 == 4'd3)begin r4 <= 1'b1; cnt4 <= 4'd0; end else begin cnt4 <= cnt4 + 4'b1; r4 <= 1'b0; end
-        if(cnt8 == 4'd7)begin r8 <= 1'b1; cnt8 <= 4'd0; end else begin cnt8 <= cnt8 + 4'b1; r8 <= 1'b0; end
-    end
+    input clk, rst_n;
+    input [2-1:0] sel;
+    output clk1_2;
+    output clk1_4;
+    output clk1_8;
+    output clk1_3;
+    output dclk;
     
-end
+    reg dclk;
+    reg [3:0] counter_2, counter_3, counter_4, counter_8;
+    reg [3:0] n_counter_2, n_counter_3, n_counter_4, n_counter_8;
+    reg vaild;
+    wire clk1_2, clk1_4, clk1_3, clk1_8;
 
-assign clk1_2 = r2;
-assign clk1_3 = r3;
-assign clk1_4 = r4;
-assign clk1_8 = r8;
+    assign clk1_2 = ((!rst_n && vaild) || (counter_2 == 0))? 1:0;
+    assign clk1_3 = ((!rst_n && vaild) || (counter_3 == 0))? 1:0;
+    assign clk1_4 = ((!rst_n && vaild) || (counter_4 == 0))? 1:0;
+    assign clk1_8 = ((!rst_n && vaild) || (counter_8 == 0))? 1:0;
 
-MUX m1(clk1_2,clk1_4,clk1_8,clk1_3,sel[1:0],dclk);
+    always @(*) begin
+        if (counter_2 == 1) n_counter_2 = 0;
+        else n_counter_2 = counter_2+1;
 
-endmodule
+        if (counter_3 == 2) n_counter_3 = 0;
+        else n_counter_3 = counter_3+1;
 
-module MUX(clk2,clk4,clk8,clk3,sel,dclk);
-input [1:0] sel;
-input clk2,clk4,clk8,clk3;
-output dclk;
+        if (counter_4 == 3) n_counter_4 = 0;
+        else n_counter_4 = counter_4+1;
 
-reg dclk;
+        if (counter_8 == 7) n_counter_8 = 0;
+        else n_counter_8 = counter_8+1;
+    end
 
-always@(*)begin
-    if(sel == 2'b00) begin dclk = clk3; end
-    else if(sel == 2'b01) begin dclk = clk2; end
-    else if(sel == 2'b11) begin dclk = clk8; end
-    else begin dclk = clk4; end
-end
+    always @(posedge clk) begin
+        if (!rst_n) begin
+            vaild <= 1;
+            counter_2 <= 0;
+            counter_3 <= 0;
+            counter_4 <= 0;
+            counter_8 <= 0;
+        end
+        else begin
+            vaild <= 0;
+            counter_2 <= n_counter_2;
+            counter_3 <= n_counter_3;
+            counter_4 <= n_counter_4;
+            counter_8 <= n_counter_8;
+        end
+    end
+
+    always @(*) begin
+        case (sel)
+            2'b00: dclk = clk1_3;
+            2'b01: dclk = clk1_2;
+            2'b10: dclk = clk1_4;
+            2'b11: dclk = clk1_8;
+            default: dclk = 0;
+        endcase
+    end
 
 endmodule

@@ -9,7 +9,6 @@ module Mux_4x1_4bit(a, b, c, d, sel, f);
     Mux_2x1_4bit M0(a, b, sel[0], x);
     Mux_2x1_4bit M1(c, d, sel[0], y);
     Mux_2x1_4bit M2(x, y, sel[1], f);
-
 endmodule
 
 module Mux_2x1_4bit(a, b, sel, o);
@@ -25,6 +24,7 @@ module Mux_2x1_4bit(a, b, sel, o);
     and a1(A[1], a[1], _sel);
     and a2(A[2], a[2], _sel);
     and a3(A[3], a[3], _sel);
+    
     and b0(B[0], b[0], sel);
     and b1(B[1], b[1], sel);
     and b2(B[2], b[2], sel);
