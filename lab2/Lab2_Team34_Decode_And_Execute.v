@@ -1,30 +1,33 @@
 `timescale 1ns/1ps
 
 module Decode_And_Execute(rs, rt, sel, seg, an);
-input [4-1:0] rs, rt;
-input [3-1:0] sel;
-output [6:0] seg;
-output [3:0] an;
-wire [4-1:0] rd;
-wire [3:0] sub, add, bit_or, bit_and, rshift, lshift, cmp_lt, cmp_eq;
+    input [4-1:0] rs, rt;
+    input [3-1:0] sel;
+    output [6:0] seg;
+    output [3:0] an;
 
-AND a0(1'b1, 1'b1, an[3]); // assign an to 1
-AND a2(1'b1, 1'b1, an[2]); // assign an to 1
-AND a3(1'b1, 1'b1, an[1]); // assign an to 1
-AND a4(1'b1, 1'b0, an[0]); // assign an to 1
-SUB s1(rs, rt, sub);
-ADD a1(rs, rt, add);
-BIT_OR b1(rs, rt, bit_or);
-BIT_AND b2(rs, rt, bit_and);
-R_SHIFT r1(rs, rt, rshift);
-L_SHIFT l1(rs, rt, lshift);
-CMP_LT c1(rs, rt, cmp_lt);
-CMP_EQ c2(rs, rt, cmp_eq);
-Mux_8x1 m0(sub[0], add[0], bit_or[0], bit_and[0], rshift[0], lshift[0], cmp_lt[0], cmp_eq[0], sel, rd[0]);
-Mux_8x1 m1(sub[1], add[1], bit_or[1], bit_and[1], rshift[1], lshift[1], cmp_lt[1], cmp_eq[1], sel, rd[1]);
-Mux_8x1 m2(sub[2], add[2], bit_or[2], bit_and[2], rshift[2], lshift[2], cmp_lt[2], cmp_eq[2], sel, rd[2]);
-Mux_8x1 m3(sub[3], add[3], bit_or[3], bit_and[3], rshift[3], lshift[3], cmp_lt[3], cmp_eq[3], sel, rd[3]);
-signal2seven_digit sss(rd, seg);
+    wire [4-1:0] rd;
+    wire [3:0] sub, add, bit_or, bit_and, rshift, lshift, cmp_lt, cmp_eq;
+
+    AND a0(1'b1, 1'b1, an[3]); // assign an to 1
+    AND a2(1'b1, 1'b1, an[2]); // assign an to 1
+    AND a3(1'b1, 1'b1, an[1]); // assign an to 1
+    AND a4(1'b1, 1'b0, an[0]); // assign an to 1
+
+    SUB s1(rs, rt, sub);
+    ADD a1(rs, rt, add);
+    BIT_OR b1(rs, rt, bit_or);
+    BIT_AND b2(rs, rt, bit_and);
+    R_SHIFT r1(rs, rt, rshift);
+    L_SHIFT l1(rs, rt, lshift);
+    CMP_LT c1(rs, rt, cmp_lt);
+    CMP_EQ c2(rs, rt, cmp_eq);
+
+    Mux_8x1 m0(sub[0], add[0], bit_or[0], bit_and[0], rshift[0], lshift[0], cmp_lt[0], cmp_eq[0], sel, rd[0]);
+    Mux_8x1 m1(sub[1], add[1], bit_or[1], bit_and[1], rshift[1], lshift[1], cmp_lt[1], cmp_eq[1], sel, rd[1]);
+    Mux_8x1 m2(sub[2], add[2], bit_or[2], bit_and[2], rshift[2], lshift[2], cmp_lt[2], cmp_eq[2], sel, rd[2]);
+    Mux_8x1 m3(sub[3], add[3], bit_or[3], bit_and[3], rshift[3], lshift[3], cmp_lt[3], cmp_eq[3], sel, rd[3]);
+    signal2seven_digit sss(rd, seg);
 endmodule
 
 module NOT (
@@ -130,6 +133,7 @@ endmodule
 module Majority(a, b, c, out);
     input a, b, c;
     output out;
+
     wire w1, w2, w3, w4;
     AND a1(a, b, w1);
     AND a2(b, c, w4);
@@ -141,15 +145,14 @@ endmodule
 module Full_Adder (a, b, cin, cout, sum);
     input a, b, cin;
     output cout, sum;
+
     wire xor_ab;
     Majority m1(a, b, cin, cout);
     XOR x1(a, b, xor_ab);
     XOR x2(cin, xor_ab, sum);
 endmodule
 
-module ADD (
-    a, b, out
-);
+module ADD (a, b, out);
     input [3:0] a, b;
     output [3:0] out;
     wire c1, c2, c3, no_use;
@@ -160,9 +163,7 @@ module ADD (
     Full_Adder f3(a[3], b[3], c3, no_use, out[3]);
 endmodule
 
-module SUB (
-    a, b, out
-);
+module SUB (a, b, out);
     input [3:0] a, b;
     output [3:0] out;
     wire [3:0] _b, __b;
@@ -301,9 +302,7 @@ module CMP_EQ (
 
 endmodule
 
-module signal2seven_digit(
-    a, seg
-);
+module signal2seven_digit(a, seg);
     input [3:0] a;
     output [6:0] seg;
     reg [6:0] seg;

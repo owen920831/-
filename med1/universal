@@ -1,0 +1,46 @@
+`timescale 1ns/1ps
+module Universal_Gate(a, b, out);
+    input a, b;
+    output out;
+    wire _b;
+    not (_b, b);
+    and (out, a, _b);
+endmodule
+
+module Decode_And_Execute(rs, rt, sel, seg, an);
+    input [4-1:0] rs, rt;
+    input [3-1:0] sel;
+    output [6:0] seg;
+    output [3:0] an;
+
+    wire [4-1:0] rd;
+    wire [3:0] sub, add, bit_or, bit_and, rshift, lshift, cmp_lt, cmp_eq;
+
+
+
+
+endmodule
+
+module NOT (input a, output out);
+    wire out;
+    Universal_Gate u1(a, 1'b1, out);
+endmodule
+
+module AND (input a, input b, output out);
+    wire out, _b;
+    NOT n1(b, _b);
+    Universal_Gate u1(a, _b, out);
+endmodule
+
+module NAND (input a, input b, output out);
+    wire out, a1;
+    AND a1(a, b, a1);
+    NOT n1(a1, out);
+endmodule
+
+module XOR (input a, input b, output out);
+    wire out, a1;
+    NAND a1(a, b, a1);
+    NOT n1(a1, out);
+    
+endmodule
