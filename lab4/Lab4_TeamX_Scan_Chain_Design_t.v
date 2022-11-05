@@ -41,7 +41,7 @@ module Scan_Chain_Design_t;
         @ (negedge clk) begin //b1
             rst_n = 1;
             scan_en = 1;
-            scan_in = 0;
+            scan_in = 1;
         end
         @ (negedge clk) begin //b2
             rst_n = 1;
