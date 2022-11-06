@@ -2,13 +2,14 @@
 
 module FPGA_1A2B(clk, rst_n, start, enter, An, LED);
     input clk, rst_n, start, enter;
+    input [3:0] flicker_answer;
     output reg [3:0] An;
     output reg [6:0] seg;
 
-    reg [3:0] num_A, num_b; //在guessing_4時檢查幾a幾b
+    reg [2:0] num_A, num_b; //在guessing_4時檢查幾a幾b
     reg [1:0] current_state, next_state;
     wire [3:0] random_answer [3:0]; //random generated answer output as LED
-    reg [3:0] guessing_answer [3:0] //input answer
+    reg [3:0] guessing_answer [3:0]; //input answer
 
     wire flip_db, flip_op, rst_db, rst_op, start_db, start_op;
     wire dclk, nclk;
@@ -35,10 +36,7 @@ module FPGA_1A2B(clk, rst_n, start, enter, An, LED);
     debounce d1(enter_db, enter, clk);
     onepulse o3(enter_op, enter_db, clk);
 
-    toBCD o( , );
-    toBCD o( , );
-    toBCD o( , );
-    toBCD o( , );
+    toBCD o( , seg);
     
 
     always @(posedge clk) begin
@@ -73,6 +71,8 @@ module FPGA_1A2B(clk, rst_n, start, enter, An, LED);
                 else next_state = state;                
             end
             guessing_4: begin //檢查答案是否正確
+                num_A = 3'b00;
+                num_b = 3'b00;
                 if (guessing_answer[0] == random_answer[0]) num_A = num_A + 3'b001;
                 else if (guessing_answer[0] == random_answer[1]) num_b = num_b + 3'b001;
                 else if (guessing_answer[0] == random_answer[2]) num_b = num_b + 3'b001;
@@ -113,8 +113,58 @@ module FPGA_1A2B(clk, rst_n, start, enter, An, LED);
         endcase
     end
 
-    always @(*) begin
-        
+    always @(*) begin //input轉移
+        case (state)
+            init: begin
+                guessing_answer[0] = 0;
+                guessing_answer[1] = 0;
+                guessing_answer[2] = 0;
+                guessing_answer[3] = 0;
+            end 
+            guessing_init: begin
+                guessing_answer[0] = 0;
+                guessing_answer[1] = 0;
+                guessing_answer[2] = 0;
+                guessing_answer[3] = 0;
+            end
+            guessing_1: begin
+                guessing_answer[0] = 0;
+                guessing_answer[1] = 0;
+                guessing_answer[2] = 0;
+                guessing_answer[3] = 0;
+            end
+            guessing_2: begin
+                guessing_answer[0] = 0;
+                guessing_answer[1] = 0;
+                guessing_answer[2] = 0;
+                guessing_answer[3] = 0;
+            end
+            guessing_3: begin
+                guessing_answer[0] = 0;
+                guessing_answer[1] = 0;
+                guessing_answer[2] = 0;
+                guessing_answer[3] = 0;               
+            end
+            guessing_4: begin //檢查答案是否正確
+                guessing_answer[0] = 0;
+                guessing_answer[1] = 0;
+                guessing_answer[2] = 0;
+                guessing_answer[3] = 0;
+            end
+            answer_correct: begin
+                guessing_answer[0] = 0;
+                guessing_answer[1] = 0;
+                guessing_answer[2] = 0;
+                guessing_answer[3] = 0;                                  
+            end
+            answer_wrong: begin
+                guessing_answer[0] = 0;
+                guessing_answer[1] = 0;
+                guessing_answer[2] = 0;
+                guessing_answer[3] = 0;                  
+            end
+            default: 
+        endcase    
     end
 
 
@@ -125,7 +175,6 @@ module FPGA_1A2B(clk, rst_n, start, enter, An, LED);
     end
     
     always @(*) begin
-        seg = out_BCD;
         case(rf_cnt)
             2'd0: An = 4'b0111;
             2'd1: An = 4'b1011;
