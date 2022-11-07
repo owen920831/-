@@ -194,7 +194,11 @@ module clk_div(     // generate counting clock
 <<<<<<< HEAD
 endmodule
 =======
+<<<<<<< HEAD
+endmodule
+=======
 endmodule
 Footer
 © 2022 GitHub, Inc.
 >>>>>>> 31da0d59c38fd0719ca3e90165d1c95be08f9102
+>>>>>>> 3a8f217f275f10a44e6a6a0bc9b2bbaa7c354eb7
