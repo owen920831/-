@@ -188,5 +188,3 @@ module clk_div(     // generate counting clock
     assign next_num = num + 1;
     assign clk_div = num[n-1];
 endmodule
-Footer
-© 2022 GitHub, Inc.
