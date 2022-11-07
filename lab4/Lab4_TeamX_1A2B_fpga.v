@@ -6,23 +6,23 @@ module FPGA_1A2B(clk, rst_n, start, enter, An, LED);
     output reg [3:0] An;
     output reg [6:0] seg;
 
-    reg [2:0] num_A, num_b; //在guessing_4時檢查幾a幾b
-    reg [1:0] current_state, next_state;
-    wire [3:0] random_answer [3:0]; //random generated answer output as LED
-    reg [3:0] guessing_answer [3:0]; //input answer
+    reg [3:0] num_A, num_b; //在guessing_4時檢查幾a幾b
+    reg [2:0] state, next_state;
+    wire [15:0] random_answer_LED; //random generated answer output as LED
+    reg [15:0] guessing_answer; //input answer
+    reg [3:0] displayed_item; //input of BCD, 包括 num_A, num_b, A, B
 
     wire flip_db, flip_op, rst_db, rst_op, start_db, start_op;
     wire dclk, nclk;
 
     // define state
     parameter init = 3'b000; // initial
-    parameter guessing_init = 3'b001; // guessing process 0000
-    parameter guessing_1 = 3'b010; //000x
-    parameter guessing_2 = 3'b011; //00xx
-    parameter guessing_3 = 3'b100; //0xxx
-    parameter guessing_4 = 3'b101; //xxxx
-    parameter answer_correct = 3'b110; 
-    parameter answer_wrong = 3'b111;
+    parameter guessing_1 = 3'b001; //000x
+    parameter guessing_2 = 3'b010; //00xx
+    parameter guessing_3 = 3'b011; //0xxx
+    parameter guessing_4 = 3'b100; //xxxx
+    parameter answer_correct = 3'b101; 
+    parameter answer_wrong = 3'b110;
 
     //除頻
     clock_divider c(clk, rst_1, dclk, nclk);
@@ -36,7 +36,7 @@ module FPGA_1A2B(clk, rst_n, start, enter, An, LED);
     debounce d1(enter_db, enter, clk);
     onepulse o3(enter_op, enter_db, clk);
 
-    toBCD o( , seg);
+    toBCD o(displayed_item, seg);
     
 
     always @(posedge clk) begin
@@ -51,13 +51,9 @@ module FPGA_1A2B(clk, rst_n, start, enter, An, LED);
     always @(*) begin
         case (state)
             init: begin
-                if (start_op) next_state = guessing_init;
+                if (start_op) next_state = guessing_1;
                 else next_state = state;
             end 
-            guessing_init: begin
-                if (enter_op) next_state = guessing_1;
-                else next_state = state;
-            end
             guessing_1: begin
                 if (enter_op) next_state = guessing_2;
                 else next_state = state;
@@ -71,34 +67,37 @@ module FPGA_1A2B(clk, rst_n, start, enter, An, LED);
                 else next_state = state;                
             end
             guessing_4: begin //檢查答案是否正確
-                num_A = 3'b00;
-                num_b = 3'b00;
-                if (guessing_answer[0] == random_answer[0]) num_A = num_A + 3'b001;
-                else if (guessing_answer[0] == random_answer[1]) num_b = num_b + 3'b001;
-                else if (guessing_answer[0] == random_answer[2]) num_b = num_b + 3'b001;
-                else if (guessing_answer[0] == random_answer[3]) num_b = num_b + 3'b001;
+                num_A = 4'b0;
+                num_b = 4'b0;
+                if (guessing_answer[15:12] == random_answer_LED[15:12]) num_A = num_A + 4'b0001;
+                else if (guessing_answer[15:12] == random_answer_LED[11:8]) num_b = num_b + 4'b0001;
+                else if (guessing_answer[15:12] == random_answer_LED[7:4]) num_b = num_b + 4'b0001;
+                else if (guessing_answer[15:12] == random_answer_LED[3:0]) num_b = num_b + 4'b0001;
                 else num_A = num_A;
 
-                if (guessing_answer[1] == random_answer[0]) num_A = num_A + 3'b001;
-                else if (guessing_answer[1] == random_answer[1]) num_b = num_b + 3'b001;
-                else if (guessing_answer[1] == random_answer[2]) num_b = num_b + 3'b001;
-                else if (guessing_answer[1] == random_answer[3]) num_b = num_b + 3'b001;
+                if (guessing_answer[11:8] ==  random_answer_LED[11:8]) num_A = num_A + 4'b0001;
+                else if (guessing_answer[11:8] == random_answer_LED[15:12]) num_b = num_b + 4'b0001;
+                else if (guessing_answer[11:8] == random_answer_LED[7:4]) num_b = num_b + 4'b0001;
+                else if (guessing_answer[11:8] == random_answer_LED[3:0]) num_b = num_b + 4'b0001;
                 else num_A = num_A;
 
-                if (guessing_answer[2] == random_answer[0]) num_A = num_A + 3'b001;
-                else if (guessing_answer[2] == random_answer[1]) num_b = num_b + 3'b001;
-                else if (guessing_answer[2] == random_answer[2]) num_b = num_b + 3'b001;
-                else if (guessing_answer[2] == random_answer[3]) num_b = num_b + 3'b001;
+                if (guessing_answer[7:4] == random_answer_LED[7:4]) num_A = num_A + 4'b0001;
+                else if (guessing_answer[7:4] == random_answer_LED[11:8]) num_b = num_b + 4'b0001;
+                else if (guessing_answer[7:4] == random_answer_LED[15:12]) num_b = num_b + 4'b0001;
+                else if (guessing_answer[7:4] == random_answer_LED[3:0]) num_b = num_b + 4'b0001;
                 else num_A = num_A;
 
-                if (guessing_answer[3] == random_answer[0]) num_A = num_A + 3'b001;
-                else if (guessing_answer[3] == random_answer[1]) num_b = num_b + 3'b001;
-                else if (guessing_answer[3] == random_answer[2]) num_b = num_b + 3'b001;
-                else if (guessing_answer[3] == random_answer[3]) num_b = num_b + 3'b001;
+                if (guessing_answer[3:0] == random_answer_LED[3:0]) num_A = num_A + 4'b0001;
+                else if (guessing_answer[3:0] == random_answer_LED[11:8]) num_b = num_b + 4'b0001;
+                else if (guessing_answer[3:0] == random_answer_LED[7:4]) num_b = num_b + 4'b0001;
+                else if (guessing_answer[3:0] == random_answer_LED[15:12]) num_b = num_b + 4'b0001;
                 else num_A = num_A;
 
-                if (enter_op && num_A == 3'b100 && num_b == 3'b000)  next_state = answer_correct; //4A0b
-                else if (enter_op && !(num_A == 3'b100 && num_b == 3'b000))  next_state = answer_wrong; //xAxb
+                if (enter_op && num_A == 4'b0100 && num_b == 4'b0000) begin
+                    next_state = answer_correct; //4A0b
+                    random_answer_LED = 16'b0; //clear LED
+                end
+                else if (enter_op && !(num_A == 4'b0100 && num_b == 4'b0000))  next_state = answer_wrong; //xAxb
                 else next_state = state;
             end
             answer_correct: begin
@@ -106,67 +105,20 @@ module FPGA_1A2B(clk, rst_n, start, enter, An, LED);
                 else next_state = state;                                   
             end
             answer_wrong: begin
-                if (enter_op) next_state = guessing_init;
+                if (enter_op) next_state = guessing_1;
                 else next_state = state;                   
             end
             default: next_state = state;
         endcase
     end
 
-    always @(*) begin //input轉移
+    always @(posedge clk) begin //input轉移
         case (state)
-            init: begin
-                guessing_answer[0] = 0;
-                guessing_answer[1] = 0;
-                guessing_answer[2] = 0;
-                guessing_answer[3] = 0;
-            end 
-            guessing_init: begin
-                guessing_answer[0] = 0;
-                guessing_answer[1] = 0;
-                guessing_answer[2] = 0;
-                guessing_answer[3] = 0;
-            end
-            guessing_1: begin
-                guessing_answer[0] = 0;
-                guessing_answer[1] = 0;
-                guessing_answer[2] = 0;
-                guessing_answer[3] = 0;
-            end
-            guessing_2: begin
-                guessing_answer[0] = 0;
-                guessing_answer[1] = 0;
-                guessing_answer[2] = 0;
-                guessing_answer[3] = 0;
-            end
-            guessing_3: begin
-                guessing_answer[0] = 0;
-                guessing_answer[1] = 0;
-                guessing_answer[2] = 0;
-                guessing_answer[3] = 0;               
-            end
-            guessing_4: begin //檢查答案是否正確
-                guessing_answer[0] = 0;
-                guessing_answer[1] = 0;
-                guessing_answer[2] = 0;
-                guessing_answer[3] = 0;
-            end
-            answer_correct: begin
-                guessing_answer[0] = 0;
-                guessing_answer[1] = 0;
-                guessing_answer[2] = 0;
-                guessing_answer[3] = 0;                                  
-            end
-            answer_wrong: begin
-                guessing_answer[0] = 0;
-                guessing_answer[1] = 0;
-                guessing_answer[2] = 0;
-                guessing_answer[3] = 0;                  
-            end
-            default: 
+            init, answer_correct, answer_wrong: guessing_answer = 16'b0;
+            guessing_1, guessing_2, guessing_3, guessing_4: guessing_answer = {guessing_answer[11:0], flicker_answer};
+            default: guessing_answer = 16'b0;
         endcase    
     end
-
 
     assign nrfcnt = dclk ? rf_cnt+1'b1 : rf_cnt;
     always @(posedge clk) begin
@@ -176,12 +128,65 @@ module FPGA_1A2B(clk, rst_n, start, enter, An, LED);
     
     always @(*) begin
         case(rf_cnt)
-            2'd0: An = 4'b0111;
-            2'd1: An = 4'b1011;
-            2'd2: An = 4'b1101;
-            2'd3: An = 4'b1110;
+        case(state)
+            init: begin
+                2'd0: begin
+                    displayed_item = 4'b0001; //1
+                    An = 4'b0111;
+                end
+                2'd1: begin
+                    displayed_item = 4'b1010; //A
+                    An = 4'b1011;
+                end
+                2'd2: begin
+                    displayed_item = 4'b0010; //2
+                    An = 4'b1101;
+                end
+                2'd3: begin
+                    displayed_item = 4'b1011; //b
+                    An = 4'b1110;
+                end
+            end
+            guessing_1, guessing_2, guessing_3, guessing_4: begin
+                2'd0: begin
+                    displayed_item = guessing_answer[15:12]; //
+                    An = 4'b0111;
+                end
+                2'd1: begin
+                    displayed_item = guessing_answer[11:8]; //
+                    An = 4'b1011;
+                end
+                2'd2: begin
+                    displayed_item = guessing_answer[7:4]; //
+                    An = 4'b1101;
+                end
+                2'd3: begin
+                    displayed_item = guessing_answer[3:0]; //
+                    An = 4'b1110;
+                end
+            end
+            answer_correct, answer_wrong: begin
+                2'd0: begin
+                    displayed_item = num_A; //num_A
+                    An = 4'b0111;
+                end
+                2'd1: begin
+                    displayed_item = 4'b1010; //A
+                    An = 4'b1011;
+                end
+                2'd2: begin
+                    displayed_item = num_b; //num_b
+                    An = 4'b1101;
+                end
+                2'd3: begin
+                    displayed_item = 4'b1011; //b
+                    An = 4'b1110;
+                end
+            end
+        endcase
         endcase
     end
+
 
 endmodule
 
@@ -205,7 +210,6 @@ module toBCD(input [3:0] out, output reg[6:0] out_BCD);
 endmodule
 
 
-
 module debounce (pb_debounced, pb, clk);
     output pb_debounced; // signal of a pushbutton after being debounced
     input pb; // signal from a pushbutton
@@ -217,7 +221,7 @@ module debounce (pb_debounced, pb, clk);
         DFF[0] <= pb;
     end
     assign pb_debounced = ((DFF == 4'b1111) ? 1'b1 : 1'b0);
-    endmodule
+endmodule
 
 module onepulse (pb_one_pulse, pb_debounced, clk);
     input pb_debounced;
@@ -258,6 +262,63 @@ module clock_divider (clk, rst_n, display_clk, num_clk);
         else begin
             display_clk <= ctr_co== 18'b111111111111111111;
             num_clk <= ctr_CO== 25'b1111111111111111111111111;
+        end
+    end
+endmodule
+
+module Many_To_One_LFSR(clk, rst_n, out);
+    input clk;
+    input rst_n;
+    output reg [11:0] out;
+
+    wire xor_in;
+
+    assign xor_in = out[1] ^ out[2] ^ out[3] ^ out[7];
+
+    always @(posedge clk) begin
+        if (!rst_n) begin
+            out <= 12'b011011110110;
+        end
+        else begin
+            out <= {out[10:0], xor_in};
+        end
+    end
+endmodule
+
+
+module random_4(clk, rst_n, ans);
+    input clk;
+    input rst_n;
+    output reg [15:0] ans;
+    wire [11:0] out;
+    
+    reg [3:0] a, b, c, d;
+    reg [15:0] tmp_ans;
+
+    wire same = (tmp_ans[15:12] != tmp_ans[11:8]) && 
+                (tmp_ans[15:12] != tmp_ans[7:4]) && 
+                (tmp_ans[15:12] != tmp_ans[3:0]) && 
+                (tmp_ans[11:8] != tmp_ans[7:4]) && 
+                (tmp_ans[11:8] != tmp_ans[3:0]) && 
+                (tmp_ans[7:4] != tmp_ans[3:0]);
+
+
+    Many_To_One_LFSR m(clk, rst_n, out);
+
+    always @(*) begin
+        a = {1'b0, out[11:9]}+1'b1;
+        b = {1'b0, out[8:6]}+1'b1;
+        c = {1'b0, out[5:3]}+1'b1;
+        d = {1'b0, out[2:0]}+1'b1;
+        tmp_ans = {a%4'b1010, (a+b)%4'b1010, (a+b+c)%4'b1010, (a+b+c+d)%4'b1010};
+    end
+
+    always @(posedge clk) begin
+        if (!rst_n) begin
+            ans <= 16'b1001001101010001;
+        end
+        else begin
+            ans <= (same) ? tmp_ans : ans;
         end
     end
 endmodule
