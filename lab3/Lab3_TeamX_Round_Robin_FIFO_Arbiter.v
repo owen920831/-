@@ -99,7 +99,6 @@ module Round_Robin_FIFO_Arbiter(clk, rst_n, wen, a, b, c, d, dout, valid);
         counter <= next_counter;
         if (!rst_n) begin
             counter <= 0;
-            dout <= 0;
             valid <= 0;
         end
         else begin
@@ -135,7 +134,7 @@ module Round_Robin_FIFO_Arbiter(clk, rst_n, wen, a, b, c, d, dout, valid);
         end
     end
 
-    always @(*) begin
+    always @(wen, counter) begin
         r0 = (!wen[0] && (counter == 2'b00)) ? 1 : 0;
         r1 = (!wen[1] && (counter == 2'b01)) ? 1 : 0;
         r2 = (!wen[2] && (counter == 2'b10)) ? 1 : 0;

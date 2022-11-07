@@ -18,10 +18,10 @@ module FIFO_8(clk, rst_n, wen, ren, din, dout, error);
     always @(*) begin
         next_front = front+1;
         next_rear = rear+1;
-        if (next_front === 4'b1001)begin
+        if (front == 4'b1000)begin
             next_front = 0;
         end
-        if (next_rear === 4'b1001)begin
+        if (rear == 4'b1000)begin
             next_rear = 0;
         end
     end

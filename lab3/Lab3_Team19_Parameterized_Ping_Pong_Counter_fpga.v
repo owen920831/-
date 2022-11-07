@@ -20,8 +20,6 @@ module PPPC_FPGA(clk, rst_n, enable, flip, max, min, Anode_Activate,LED_out);
     debounce d1(rst_db, rst_n, clk);
     onepulse o3(rst_1, rst_db, clk);
 
-
-
     wire direction;
     wire [3:0]  out;
     wire [13:0] out_BCD;
@@ -105,25 +103,24 @@ module toBCD(input [3:0] out, output reg[13:0] out_BCD);
     assign RB= (out>4'd9)?out-4'd10:out;
     always @(*)
     begin
-    case(LB)
-    1'b0: out_BCD[13:7] = 7'b0000001; 
-    1'b1: out_BCD[13:7] = 7'b1001111;
-    endcase
+        case(LB)
+            1'b0: out_BCD[13:7] = 7'b0000001; 
+            1'b1: out_BCD[13:7] = 7'b1001111;
+        endcase
     end
-    always @(*)
-    begin
-    case(RB)
-    4'd0: out_BCD[6:0] = 7'b0000001;   
-    4'd1: out_BCD[6:0] = 7'b1001111; 
-    4'd2: out_BCD[6:0] = 7'b0010010;  
-    4'd3: out_BCD[6:0] = 7'b0000110; 
-    4'd4: out_BCD[6:0] = 7'b1001100; 
-    4'd5: out_BCD[6:0] = 7'b0100100;  
-    4'd6: out_BCD[6:0] = 7'b0100000; 
-    4'd7: out_BCD[6:0] = 7'b0001111; 
-    4'd8: out_BCD[6:0] = 7'b0000000;  
-    4'd9: out_BCD[6:0] = 7'b0000100; 
-    endcase
+    always @(*) begin
+            case(RB)
+            4'd0: out_BCD[6:0] = 7'b0000001;   
+            4'd1: out_BCD[6:0] = 7'b1001111; 
+            4'd2: out_BCD[6:0] = 7'b0010010;  
+            4'd3: out_BCD[6:0] = 7'b0000110; 
+            4'd4: out_BCD[6:0] = 7'b1001100; 
+            4'd5: out_BCD[6:0] = 7'b0100100;  
+            4'd6: out_BCD[6:0] = 7'b0100000; 
+            4'd7: out_BCD[6:0] = 7'b0001111; 
+            4'd8: out_BCD[6:0] = 7'b0000000;  
+            4'd9: out_BCD[6:0] = 7'b0000100; 
+        endcase
     end
 endmodule
 
@@ -145,9 +142,9 @@ module Parameterized_Ping_Pong_Counter (clk, rst_n, enable, flip, max, min, dire
             save<=1'b1;
         end
         else begin
-                out <= n_cnt;
-                direction <= ndir;
-                save <=nsave;
+            out <= n_cnt;
+            direction <= ndir;
+            save <=nsave;
         end
     end
     always @(*) begin
@@ -162,7 +159,6 @@ module Parameterized_Ping_Pong_Counter (clk, rst_n, enable, flip, max, min, dire
                     else n_cnt = out + 1'b1;
                     ndir = flip?1'b1:out <= min ;
                 end
-            
         end
         else begin
             ndir = direction;
@@ -180,12 +176,12 @@ module Clock_Divider (clk, rst_n, display_clk, num_clk);
     reg [24:0] ctr_CO;
     always @(posedge clk) begin
         if(rst_n) begin
-        ctr_co <= 1'b0;
-        ctr_CO <=1'b0;
+            ctr_co <= 1'b0;
+            ctr_CO <=1'b0;
         end
         else begin
-        ctr_co <= ctr_co+1'b1;
-        ctr_CO <= ctr_CO+1'b1;
+            ctr_co <= ctr_co+1'b1;
+            ctr_CO <= ctr_CO+1'b1;
         end
         
     end
