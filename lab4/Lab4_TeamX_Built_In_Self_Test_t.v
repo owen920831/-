@@ -1,76 +1,25 @@
-module Built_In_Self_Test_t;
-    reg clk = 1;
-    reg rst_n = 1;
-    reg scan_en = 0;
-    wire scan_in;
-    wire scan_out;
+`timescale 1ns/1ps
 
-    // specify duration of a clock cycle.
-    parameter cyc = 10;
+module Built_In_Self_Test_t();
+    reg clk, rst_n, scan_en;
+    wire scan_in, scan_out;
 
-    // generate clock.
-    always #(cyc/2) clk = ~clk;
+    Built_In_Self_Test m0 (
+        .clk(clk),
+        .rst_n(rst_n),
+        .scan_en(scan_en),
+        .scan_in(scan_in),
+        .scan_out(scan_out)
+    );
 
-    Built_In_Self_Test b(clk, rst_n, scan_en, scan_in, scan_out);
+    always #10 clk = ~clk;
 
     initial begin
-        @ (negedge clk) begin
-            rst_n = 0;
-            scan_en = 1;
-        end
-        @ (negedge clk) begin
-            rst_n = 1;
-            scan_en = 0;
-        end
-        @ (negedge clk) begin
-            rst_n = 1;
-            scan_en = 1;
-        end
-        @ (negedge clk) begin
-            rst_n = 1;
-            scan_en = 1;
-        end
-        @ (negedge clk) begin
-            rst_n = 1;
-            scan_en = 1;
-        end
-        @ (negedge clk) begin
-            rst_n = 1;
-            scan_en = 1;
-        end
-        @ (negedge clk) begin
-            rst_n = 1;
-            scan_en = 1;
-        end
-        @ (negedge clk) begin
-            rst_n = 1;
-            scan_en = 1;
-        end
-        @ (negedge clk) begin
-            rst_n = 1;
-            scan_en = 1;
-        end
-        @ (negedge clk) begin
-            rst_n = 1;
-            scan_en = 1;
-        end
-        @ (negedge clk) begin
-            rst_n = 1;
-            scan_en = 1;
-        end
-        @ (negedge clk) begin
-            rst_n = 1;
-            scan_en = 1;
-        end
-        @ (negedge clk) begin
-            rst_n = 1;
-            scan_en = 1;
-        end
-        @ (negedge clk) begin
-            rst_n = 1;
-            scan_en = 1;
-        end
+        clk = 0; rst_n = 0; scan_en = 0;
+        #20
+        rst_n = 1; scan_en = 1;
+        #160 scan_en = 0;
+        #20 scan_en = 1;
+        #160 $finish(); 
     end
-
-
 endmodule
