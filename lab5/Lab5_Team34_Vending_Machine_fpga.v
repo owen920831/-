@@ -62,22 +62,6 @@ module Clock_Divider (clk, rst_n, display_clk);
     end
 endmodule
 
-module return_money_clock_divider (clk, rst_n, return_clk);
-    input clk, rst_n;
-    output reg return_clk;
-
-    reg [26:0] r_counter; //1sec
-
-    always @(posedge clk) begin
-        r_counter <= (!rst_n)? 1'b0 : r_counter + 1'b1;
-    end
-
-    always @(posedge clk) begin
-        return_clk <= (!rst_n)? 1'b0 : (r_counter == 27'b0);
-    end
-endmodule
-
-
 module FPGA_vending_machine (
     input clk, rst_n, NT_5, NT_10, NT_50, cancel,
     inout wire PS2_DATA,
@@ -157,9 +141,7 @@ module main_vending_machine (clk, rst_n, NT_5, NT_10, NT_50, cancel, drink_selec
     reg [1:0] state, next_state;
     reg [3:0] available_drink_LED, next_available_drink_LED; //ans
     reg [7:0] current_money, next_current_money;
-
-    wire return_NT5;
-    return_money_clock_divider r(clk, rst_n, return_NT5);
+    reg [29:0] r_counter, next_r_counter;
 
     // rst_n and update value from next
     always @(posedge clk) begin
@@ -167,11 +149,21 @@ module main_vending_machine (clk, rst_n, NT_5, NT_10, NT_50, cancel, drink_selec
             state <= insert_money;
             available_drink_LED <= 0;
             current_money <= 0;
+            r_counter <= 0;
         end
         else begin
             state <= next_state;
             available_drink_LED <= next_available_drink_LED;
             current_money <= next_current_money;
+            r_counter <= next_r_counter;
+        end
+    end
+
+    always @(*) begin
+        if (r_counter == 30'd100000000) next_r_counter = 30'd0;
+        else begin
+            if (state == return_money) next_r_counter = r_counter + 1;
+            else next_r_counter = 30'd0;    
         end
     end
 
@@ -219,17 +211,24 @@ module main_vending_machine (clk, rst_n, NT_5, NT_10, NT_50, cancel, drink_selec
                 else next_current_money = current_money;
             end
             return_money: begin
-                next_current_money = (return_NT5)? current_money-8'd5 : current_money;
+                next_current_money = (r_counter == 30'd100000000)? current_money-8'd5 : current_money;
             end
         endcase
     end
     // show that which drink can buy
     always @(*) begin
-        if      (current_money >= 8'd20 && current_money < 8'd25) next_available_drink_LED = {1'b0, 1'b0, 1'b0, 1'b1};
-        else if (current_money >= 8'd25 && current_money < 8'd30) next_available_drink_LED = {1'b0, 1'b0, 1'b1, 1'b1};
-        else if (current_money >= 8'd30 && current_money < 8'd80) next_available_drink_LED = {1'b0, 1'b1, 1'b1, 1'b1};
-        else if (current_money >= 8'd80) next_available_drink_LED = {1'b1, 1'b1, 1'b1, 1'b1};
-        else next_available_drink_LED = {1'b0, 1'b0, 1'b0, 1'b0};
+        case (state) 
+            insert_money: begin
+                if      (current_money >= 8'd20 && current_money < 8'd25) next_available_drink_LED = {1'b0, 1'b0, 1'b0, 1'b1};
+                else if (current_money >= 8'd25 && current_money < 8'd30) next_available_drink_LED = {1'b0, 1'b0, 1'b1, 1'b1};
+                else if (current_money >= 8'd30 && current_money < 8'd80) next_available_drink_LED = {1'b0, 1'b1, 1'b1, 1'b1};
+                else if (current_money >= 8'd80) next_available_drink_LED = {1'b1, 1'b1, 1'b1, 1'b1};
+                else next_available_drink_LED = {1'b0, 1'b0, 1'b0, 1'b0};
+            end
+            select, return_money: begin
+                next_available_drink_LED = {1'b0, 1'b0, 1'b0, 1'b0};
+            end
+        endcase
     end
 endmodule
 
