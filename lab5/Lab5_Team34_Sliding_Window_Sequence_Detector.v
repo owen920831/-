@@ -1,10 +1,10 @@
 `timescale 1ns/1ps
 
-module Sliding_Window_Sequence_Detector (clk, rst_n, in, dec, state);
+module Sliding_Window_Sequence_Detector (clk, rst_n, in, dec);
     input clk, rst_n;
     input in;
     output reg dec;
-    output reg [3:0] state;
+    reg [3:0] state;
 
     parameter S0 = 4'b0000;
     parameter S1 = 4'b0001;
@@ -102,7 +102,7 @@ module Sliding_Window_Sequence_Detector (clk, rst_n, in, dec, state);
             S1110_01_1:begin
                 if (in) begin
                     next_state = S1110_01_11;
-                    dec = 0;
+                    dec = 1;
                 end 
                 else begin
                     next_state = S0;
@@ -112,11 +112,11 @@ module Sliding_Window_Sequence_Detector (clk, rst_n, in, dec, state);
             S1110_01_11:begin
                 if (in) begin
                     next_state = S111;
-                    dec = 1;
+                    dec = 0;
                 end 
                 else begin
                     next_state = S1110;
-                    dec = 1;
+                    dec = 0;
                 end
             end 
         endcase
