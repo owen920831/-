@@ -1,7 +1,7 @@
 `timescale 1ns/1ps
 
 module Built_In_Self_Test_t();
-    reg clk, rst_n, scan_en;
+    reg clk = 0, rst_n = 0, scan_en = 0;
     wire scan_in, scan_out;
 
     Built_In_Self_Test m0 (
@@ -15,9 +15,7 @@ module Built_In_Self_Test_t();
     always #10 clk = ~clk;
 
     initial begin
-        clk = 0; rst_n = 0; scan_en = 0;
-        #20
-        rst_n = 1; scan_en = 1;
+        #20 rst_n = 1; scan_en = 1;
         #160 scan_en = 0;
         #20 scan_en = 1;
         #160 $finish(); 

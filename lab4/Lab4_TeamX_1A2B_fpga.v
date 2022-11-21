@@ -80,11 +80,9 @@ endmodule
 module Many_To_One_LFSR(clk, rst_n, out);
     input clk;
     input rst_n;
-    output reg [11:0] out;
+    output reg [15:0] out;
 
-    wire xor_in;
-
-    assign xor_in = out[1] ^ out[2] ^ out[3] ^ out[7];
+    wire xor_in = out[1] ^ out[2] ^ out[3] ^ out[7];
 
     always @(posedge clk) begin
         if (!rst_n) begin
@@ -147,7 +145,6 @@ module FPGA_1A2b (
     debounce d2(enter_db, enter, clk);
     onepulse o4(enter_op, enter_db, clk);
 
-    // Core module
     wire [15:0] guessing_answer;
     wire [3:0] num_A, num_b;
     wire [1:0] state;
