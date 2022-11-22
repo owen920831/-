@@ -95,10 +95,10 @@ module FPGA_vending_machine (
     wire [8:0] last_change;
     wire been_ready;
 
-    parameter [8:0] KEY_CODES_a = 9'b0_0001_1100; // right_0 => 1c
-    parameter [8:0] KEY_CODES_s = 9'b0_0001_1011; // right_1 => 1b
-    parameter [8:0] KEY_CODES_d = 9'b0_0010_0011; // right_2 => 23
-    parameter [8:0] KEY_CODES_f = 9'b0_0010_1011; // right_3 => 2b
+    parameter [8:0] KEY_CODES_a = 9'b0_0001_1100; // a => 1c
+    parameter [8:0] KEY_CODES_s = 9'b0_0001_1011; // s => 1b
+    parameter [8:0] KEY_CODES_d = 9'b0_0010_0011; // d => 23
+    parameter [8:0] KEY_CODES_f = 9'b0_0010_1011; // f => 2b
 
     KeyboardDecoder key_de (
         .key_down(key_down),
