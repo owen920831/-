@@ -31,15 +31,15 @@ always @(*) begin
     next_state = 2'bx;
     case (state)
         WAIT: begin 
-            if (start) next_state <= CAL;
-            else next_state <= WAIT;
+            if (start) next_state = CAL;
+            else next_state = WAIT;
         end
         CAL: begin
-            if (0 != b_buf) next_state <= CAL;
-            else next_state <= FINISH1;
+            if (0 != b_buf) next_state= CAL;
+            else next_state = FINISH1;
         end
-        FINISH1: next_state <= FINISH2;
-        FINISH2: next_state <= WAIT;
+        FINISH1: next_state = FINISH2;
+        FINISH2: next_state = WAIT;
     endcase    
 end
 
