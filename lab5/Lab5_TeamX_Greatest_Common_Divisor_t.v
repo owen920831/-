@@ -21,6 +21,7 @@ module Greatest_Common_Divisor_t;
         .done(done)
     );
     
+    
     integer i;
     initial begin
         #4 rst_n = 0;
