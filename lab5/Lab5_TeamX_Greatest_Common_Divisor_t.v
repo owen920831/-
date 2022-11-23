@@ -20,7 +20,8 @@ module Greatest_Common_Divisor_t;
         .gcd(gcd),
         .done(done)
     );
-
+    
+    integer i;
     initial begin
         #4 rst_n = 0;
         #8 rst_n = 1;
@@ -30,6 +31,6 @@ module Greatest_Common_Divisor_t;
         #4 start = 0;
         a = 0;
         b = 0;
-       
+
     end
 endmodule
