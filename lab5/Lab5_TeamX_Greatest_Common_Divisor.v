@@ -35,7 +35,7 @@ always @(*) begin
             else next_state <= WAIT;
         end
         CAL: begin
-            if (a_buf != b_buf) next_state <= CAL;
+            if (0 != b_buf) next_state <= CAL;
             else next_state <= FINISH1;
         end
         FINISH1: next_state <= FINISH2;
@@ -61,15 +61,13 @@ always @ (posedge clk) begin
                 done <= 0;
             end
             CAL: begin
-                if (a_buf != b_buf) begin
-                    if (a_buf > b_buf) begin
-                        a_buf <= a_buf - b_buf;
-                        b_buf <= b_buf;
-                    end
-                    else begin
-                        b_buf <= b_buf - a_buf;
-                        a_buf <= a_buf;
-                    end
+                if (a_buf > b_buf) begin
+                    a_buf <= a_buf - b_buf;
+                    b_buf <= b_buf;
+                end
+                else begin
+                    b_buf <= b_buf - a_buf;
+                    a_buf <= a_buf;
                 end
             end
             FINISH1: begin
@@ -77,7 +75,7 @@ always @ (posedge clk) begin
                 done <= 1;
             end
             FINISH2: begin
-                gcd <= b_buf;
+                gcd <= (a_buf == 0) ? b_buf: a_buf;
                 done <= 1;
             end
         endcase
