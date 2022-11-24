@@ -1,0 +1,20 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Wed Nov 23 00:59:56 2022
+# Process ID: 16064
+# Current directory: E:/lab5/bonus
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent26208 E:\lab5\bonus\bonus.xpr
+# Log file: E:/lab5/bonus/vivado.log
+# Journal file: E:/lab5/bonus\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project E:/lab5/bonus/bonus.xpr
+update_compile_order -fileset sources_1
+launch_simulation
+source Booth_Multiplier_4bit_t.tcl
+close_sim
+launch_simulation
+source Booth_Multiplier_4bit_t.tcl
+close_sim

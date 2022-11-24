@@ -1,0 +1,94 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Thu Nov 24 11:31:30 2022
+# Process ID: 9896
+# Current directory: E:/lab5/fpga1
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent7212 E:\lab5\fpga1\fpga1.xpr
+# Log file: E:/lab5/fpga1/vivado.log
+# Journal file: E:/lab5/fpga1\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project E:/lab5/fpga1/fpga1.xpr
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/khris/大二上/Logic-Design-Laborator/Keyboard_and_Audio_Sample_Code/Keyboard_Sample_Code/ip'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2020.2/data/ip'.
+update_compile_order -fileset sources_1
+create_ip -name KeyboardCtrl -vendor xilinx.com -library user -version 1.0 -module_name KeyboardCtrl_1
+generate_target {instantiation_template} [get_files e:/lab5/fpga1/fpga1.srcs/sources_1/ip/KeyboardCtrl_1/KeyboardCtrl_1.xci]
+INFO: [IP_Flow 19-1686] Generating 'Instantiation Template' target for IP 'KeyboardCtrl_1'...
+update_compile_order -fileset sources_1
+generate_target all [get_files  e:/lab5/fpga1/fpga1.srcs/sources_1/ip/KeyboardCtrl_1/KeyboardCtrl_1.xci]
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'KeyboardCtrl_1'...
+CRITICAL WARNING: [IP_Flow 19-663] Failed to copy file 'c:/khris/大二上/Logic-Design-Laborator/Keyboard_and_Audio_Sample_Code/Keyboard_Sample_Code/ip/Keyboard-Controller/keyboard_cntr_1.0/src/KeyboardCtrl.v', it does not exist.
+CRITICAL WARNING: [IP_Flow 19-157] Failed to copy file from 'c:/khris/大二上/Logic-Design-Laborator/Keyboard_and_Audio_Sample_Code/Keyboard_Sample_Code/ip/Keyboard-Controller/keyboard_cntr_1.0/src/KeyboardCtrl.v' to 'e:/lab5/fpga1/fpga1.gen/sources_1/ip/KeyboardCtrl_1/src/KeyboardCtrl.v'.
+ERROR: [IP_Flow 19-167] Failed to deliver one or more file(s).
+ERROR: [IP_Flow 19-3505] IP Generation error: Failed to generate IP 'KeyboardCtrl_1'. Failed to generate 'Verilog Synthesis' outputs: 
+ERROR: [IP_Flow 19-98] Generation of the IP CORE failed.
+Failed to generate IP 'KeyboardCtrl_1'. Failed to generate 'Verilog Synthesis' outputs: 
+export_ip_user_files -of_objects  [get_files e:/lab5/fpga1/fpga1.srcs/sources_1/ip/KeyboardCtrl_1/KeyboardCtrl_1.xci] -no_script -reset -force -quiet
+remove_files  e:/lab5/fpga1/fpga1.srcs/sources_1/ip/KeyboardCtrl_1/KeyboardCtrl_1.xci
+export_ip_user_files -of_objects  [get_files E:/lab5/fpga1/fpga1.srcs/sources_1/ip/KeyboardCtrl_0/KeyboardCtrl_0.xci] -no_script -reset -force -quiet
+remove_files  E:/lab5/fpga1/fpga1.srcs/sources_1/ip/KeyboardCtrl_0/KeyboardCtrl_0.xci
+create_ip -name KeyboardCtrl -vendor xilinx.com -library user -version 1.0 -module_name KeyboardCtrl_0
+generate_target {instantiation_template} [get_files e:/lab5/fpga1/fpga1.srcs/sources_1/ip/KeyboardCtrl_0_1/KeyboardCtrl_0.xci]
+INFO: [IP_Flow 19-1686] Generating 'Instantiation Template' target for IP 'KeyboardCtrl_0'...
+generate_target all [get_files  e:/lab5/fpga1/fpga1.srcs/sources_1/ip/KeyboardCtrl_0_1/KeyboardCtrl_0.xci]
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'KeyboardCtrl_0'...
+CRITICAL WARNING: [IP_Flow 19-663] Failed to copy file 'c:/khris/大二上/Logic-Design-Laborator/Keyboard_and_Audio_Sample_Code/Keyboard_Sample_Code/ip/Keyboard-Controller/keyboard_cntr_1.0/src/KeyboardCtrl.v', it does not exist.
+CRITICAL WARNING: [IP_Flow 19-157] Failed to copy file from 'c:/khris/大二上/Logic-Design-Laborator/Keyboard_and_Audio_Sample_Code/Keyboard_Sample_Code/ip/Keyboard-Controller/keyboard_cntr_1.0/src/KeyboardCtrl.v' to 'e:/lab5/fpga1/fpga1.gen/sources_1/ip/KeyboardCtrl_0_1/src/KeyboardCtrl.v'.
+ERROR: [IP_Flow 19-167] Failed to deliver one or more file(s).
+ERROR: [IP_Flow 19-3505] IP Generation error: Failed to generate IP 'KeyboardCtrl_0'. Failed to generate 'Verilog Synthesis' outputs: 
+ERROR: [IP_Flow 19-98] Generation of the IP CORE failed.
+Failed to generate IP 'KeyboardCtrl_0'. Failed to generate 'Verilog Synthesis' outputs: 
+update_compile_order -fileset sources_1
+WARNING: [IP_Flow 19-4318] IP-XACT file does not exist: c:/khris/大二上/Logic-Design-Laborator/Keyboard_and_Audio_Sample_Code/Keyboard_Sample_Code/ip/Keyboard-Controller/keyboard_cntr_1.0/component.xml. It will be created.
+update_ip_catalog -rebuild -scan_changes
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+WARNING: [IP_Flow 19-2248] Failed to load user IP repository 'c:/khris/大二上/Logic-Design-Laborator/Keyboard_and_Audio_Sample_Code/Keyboard_Sample_Code/ip'; Can't find the specified path.
+If this directory should no longer be in your list of user repositories, go to the IP Settings dialog and remove it.
+report_ip_status -name ip_status
+update_compile_order -fileset sources_1
+export_ip_user_files -of_objects  [get_files e:/lab5/fpga1/fpga1.srcs/sources_1/ip/KeyboardCtrl_0_1/KeyboardCtrl_0.xci] -no_script -reset -force -quiet
+remove_files  e:/lab5/fpga1/fpga1.srcs/sources_1/ip/KeyboardCtrl_0_1/KeyboardCtrl_0.xci
+set_property  ip_repo_paths  {} [current_project]
+update_ip_catalog
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+set_property  ip_repo_paths  {{C:/khris/大二上/Logic-Design-Laborator/Keyboard_and_Audio_Sample_Code/Keyboard Sample Code/Keyboard Sample Code/ip}} [current_project]
+update_ip_catalog
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/khris/大二上/Logic-Design-Laborator/Keyboard_and_Audio_Sample_Code/Keyboard Sample Code/Keyboard Sample Code/ip'.
+create_ip -name KeyboardCtrl -vendor xilinx.com -library user -version 1.0 -module_name KeyboardCtrl_0
+generate_target {instantiation_template} [get_files e:/lab5/fpga1/fpga1.srcs/sources_1/ip/KeyboardCtrl_0_2/KeyboardCtrl_0.xci]
+INFO: [IP_Flow 19-1686] Generating 'Instantiation Template' target for IP 'KeyboardCtrl_0'...
+generate_target all [get_files  e:/lab5/fpga1/fpga1.srcs/sources_1/ip/KeyboardCtrl_0_2/KeyboardCtrl_0.xci]
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'KeyboardCtrl_0'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'KeyboardCtrl_0'...
+catch { config_ip_cache -export [get_ips -all KeyboardCtrl_0] }
+export_ip_user_files -of_objects [get_files e:/lab5/fpga1/fpga1.srcs/sources_1/ip/KeyboardCtrl_0_2/KeyboardCtrl_0.xci] -no_script -sync -force -quiet
+create_ip_run [get_files -of_objects [get_fileset sources_1] e:/lab5/fpga1/fpga1.srcs/sources_1/ip/KeyboardCtrl_0_2/KeyboardCtrl_0.xci]
+launch_runs KeyboardCtrl_0_synth_1 -jobs 8
+[Thu Nov 24 11:43:10 2022] Launched KeyboardCtrl_0_synth_1...
+Run output will be captured here: E:/lab5/fpga1/fpga1.runs/KeyboardCtrl_0_synth_1/runme.log
+export_simulation -of_objects [get_files e:/lab5/fpga1/fpga1.srcs/sources_1/ip/KeyboardCtrl_0_2/KeyboardCtrl_0.xci] -directory E:/lab5/fpga1/fpga1.ip_user_files/sim_scripts -ip_user_files_dir E:/lab5/fpga1/fpga1.ip_user_files -ipstatic_source_dir E:/lab5/fpga1/fpga1.ip_user_files/ipstatic -lib_map_path [list {modelsim=E:/lab5/fpga1/fpga1.cache/compile_simlib/modelsim} {questa=E:/lab5/fpga1/fpga1.cache/compile_simlib/questa} {riviera=E:/lab5/fpga1/fpga1.cache/compile_simlib/riviera} {activehdl=E:/lab5/fpga1/fpga1.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+add_files -norecurse {{C:/khris/大二上/Logic-Design-Laborator/Keyboard_and_Audio_Sample_Code/Keyboard Sample Code/Keyboard Sample Code/KeyboardDecoder.v}}
+update_compile_order -fileset sources_1
+create_ip -name KeyboardCtrl -vendor xilinx.com -library user -version 1.0 -module_name KeyboardCtrl_1
+generate_target {instantiation_template} [get_files e:/lab5/fpga1/fpga1.srcs/sources_1/ip/KeyboardCtrl_1_1/KeyboardCtrl_1.xci]
+INFO: [IP_Flow 19-1686] Generating 'Instantiation Template' target for IP 'KeyboardCtrl_1'...
+generate_target all [get_files  e:/lab5/fpga1/fpga1.srcs/sources_1/ip/KeyboardCtrl_1_1/KeyboardCtrl_1.xci]
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'KeyboardCtrl_1'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'KeyboardCtrl_1'...
+catch { config_ip_cache -export [get_ips -all KeyboardCtrl_1] }
+INFO: [IP_Flow 19-4993] Using cached IP synthesis design for IP KeyboardCtrl_1, cache-ID = a277868aaf654198; cache size = 0.179 MB.
+export_ip_user_files -of_objects [get_files e:/lab5/fpga1/fpga1.srcs/sources_1/ip/KeyboardCtrl_1_1/KeyboardCtrl_1.xci] -no_script -sync -force -quiet
+create_ip_run [get_files -of_objects [get_fileset sources_1] e:/lab5/fpga1/fpga1.srcs/sources_1/ip/KeyboardCtrl_1_1/KeyboardCtrl_1.xci]
+INFO: [Vivado 12-3453] The given sub-design is up-to-date, no action was taken.  If a run is still desired, use the '-force' option for the file:'e:/lab5/fpga1/fpga1.srcs/sources_1/ip/KeyboardCtrl_1_1/KeyboardCtrl_1.xci'
+export_simulation -of_objects [get_files e:/lab5/fpga1/fpga1.srcs/sources_1/ip/KeyboardCtrl_1_1/KeyboardCtrl_1.xci] -directory E:/lab5/fpga1/fpga1.ip_user_files/sim_scripts -ip_user_files_dir E:/lab5/fpga1/fpga1.ip_user_files -ipstatic_source_dir E:/lab5/fpga1/fpga1.ip_user_files/ipstatic -lib_map_path [list {modelsim=E:/lab5/fpga1/fpga1.cache/compile_simlib/modelsim} {questa=E:/lab5/fpga1/fpga1.cache/compile_simlib/questa} {riviera=E:/lab5/fpga1/fpga1.cache/compile_simlib/riviera} {activehdl=E:/lab5/fpga1/fpga1.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+update_compile_order -fileset sources_1
+exit
+INFO: [Common 17-206] Exiting Vivado at Thu Nov 24 12:08:35 2022...

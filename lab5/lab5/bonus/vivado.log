@@ -1,0 +1,963 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Wed Nov 23 12:04:49 2022
+# Process ID: 21464
+# Current directory: E:/lab5/bonus
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent8660 E:\lab5\bonus\bonus.xpr
+# Log file: E:/lab5/bonus/vivado.log
+# Journal file: E:/lab5/bonus\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project E:/lab5/bonus/bonus.xpr
+WARNING: [filemgmt 56-3] Default IP Output Path : Could not find the directory 'E:/lab5/bonus/bonus.gen/sources_1'.
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2020.2/data/ip'.
+update_compile_order -fileset sources_1
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'Booth_Multiplier_4bit_t' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj Booth_Multiplier_4bit_t_vlog.prj"
+INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+"xelab -wto b365e240206e4a08ab0a42134b938294 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot Booth_Multiplier_4bit_t_behav xil_defaultlib.Booth_Multiplier_4bit_t xil_defaultlib.glbl -log elaborate.log"
+Vivado Simulator 2020.2
+Copyright 1986-1999, 2001-2020 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2020.2/bin/unwrapped/win64.o/xelab.exe -wto b365e240206e4a08ab0a42134b938294 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot Booth_Multiplier_4bit_t_behav xil_defaultlib.Booth_Multiplier_4bit_t xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+INFO: [XSIM 43-4323] No Change in HDL. Linking previously generated obj files to create kernel
+INFO: [USF-XSim-69] 'elaborate' step finished in '2' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "Booth_Multiplier_4bit_t_behav -key {Behavioral:sim_1:Functional:Booth_Multiplier_4bit_t} -tclbatch {Booth_Multiplier_4bit_t.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2020.2
+Time resolution is 1 ps
+source Booth_Multiplier_4bit_t.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'Booth_Multiplier_4bit_t_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1007.770 ; gain = 0.000
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'Booth_Multiplier_4bit_t' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj Booth_Multiplier_4bit_t_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Booth_Multiplier_4bit
+ERROR: [VRFC 10-4982] syntax error near 'reg' [C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v:8]
+ERROR: [VRFC 10-2790] Verilog 2000 keyword reg used in incorrect context [C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v:8]
+ERROR: [VRFC 10-4982] syntax error near '=' [C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v:11]
+ERROR: [VRFC 10-3584] no definition for port 'p' [C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v:3]
+ERROR: [VRFC 10-2939] 'ADD' is an unknown type [C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v:11]
+ERROR: [VRFC 10-2939] 'SHIFT' is an unknown type [C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v:12]
+ERROR: [VRFC 10-2939] 'FINISH1' is an unknown type [C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v:13]
+ERROR: [VRFC 10-2939] 'FINISH2' is an unknown type [C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v:14]
+ERROR: [VRFC 10-2989] 'ADD' is not declared [C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v:27]
+ERROR: [VRFC 10-2989] 'ADD' is not declared [C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v:29]
+ERROR: [VRFC 10-2989] 'SHIFT' is not declared [C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v:30]
+ERROR: [VRFC 10-2989] 'ADD' is not declared [C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v:31]
+ERROR: [VRFC 10-2989] 'FINISH1' is not declared [C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v:32]
+ERROR: [VRFC 10-2989] 'FINISH2' is not declared [C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v:33]
+ERROR: [VRFC 10-2989] 'ADD' is not declared [C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v:57]
+ERROR: [VRFC 10-2989] 'SHIFT' is not declared [C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v:68]
+ERROR: [VRFC 10-2989] 'FINISH1' is not declared [C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v:71]
+ERROR: [VRFC 10-2989] 'FINISH2' is not declared [C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v:72]
+ERROR: [VRFC 10-2865] module 'Booth_Multiplier_4bit' ignored due to previous errors [C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v:3]
+INFO: [USF-XSim-69] 'compile' step finished in '2' seconds
+INFO: [USF-XSim-99] Step results log file:'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim/xvlog.log'
+ERROR: [USF-XSim-62] 'compile' step failed with error(s). Please check the Tcl console output or 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim/xvlog.log' file for more information.
+ERROR: [Vivado 12-4473] Detected error while running simulation. Please correct the issue and retry this operation.
+ERROR: [Common 17-39] 'launch_simulation' failed due to earlier errors.
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'Booth_Multiplier_4bit_t' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj Booth_Multiplier_4bit_t_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Booth_Multiplier_4bit
+ERROR: [VRFC 10-4982] syntax error near '=' [C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v:11]
+ERROR: [VRFC 10-2939] 'ADD' is an unknown type [C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v:11]
+ERROR: [VRFC 10-2939] 'SHIFT' is an unknown type [C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v:12]
+ERROR: [VRFC 10-2939] 'FINISH1' is an unknown type [C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v:13]
+ERROR: [VRFC 10-2939] 'FINISH2' is an unknown type [C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v:14]
+ERROR: [VRFC 10-2989] 'ADD' is not declared [C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v:27]
+ERROR: [VRFC 10-2989] 'ADD' is not declared [C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v:29]
+ERROR: [VRFC 10-2989] 'SHIFT' is not declared [C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v:30]
+ERROR: [VRFC 10-2989] 'ADD' is not declared [C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v:31]
+ERROR: [VRFC 10-2989] 'FINISH1' is not declared [C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v:32]
+ERROR: [VRFC 10-2989] 'FINISH2' is not declared [C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v:33]
+ERROR: [VRFC 10-2989] 'ADD' is not declared [C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v:57]
+ERROR: [VRFC 10-2989] 'SHIFT' is not declared [C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v:68]
+ERROR: [VRFC 10-2989] 'FINISH1' is not declared [C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v:71]
+ERROR: [VRFC 10-2989] 'FINISH2' is not declared [C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v:72]
+ERROR: [VRFC 10-2865] module 'Booth_Multiplier_4bit' ignored due to previous errors [C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v:3]
+INFO: [USF-XSim-69] 'compile' step finished in '2' seconds
+INFO: [USF-XSim-99] Step results log file:'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim/xvlog.log'
+ERROR: [USF-XSim-62] 'compile' step failed with error(s). Please check the Tcl console output or 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim/xvlog.log' file for more information.
+ERROR: [Vivado 12-4473] Detected error while running simulation. Please correct the issue and retry this operation.
+ERROR: [Common 17-39] 'launch_simulation' failed due to earlier errors.
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'Booth_Multiplier_4bit_t' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj Booth_Multiplier_4bit_t_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Booth_Multiplier_4bit
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit_t.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Booth_Multiplier_4bit_t
+INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+"xelab -wto b365e240206e4a08ab0a42134b938294 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot Booth_Multiplier_4bit_t_behav xil_defaultlib.Booth_Multiplier_4bit_t xil_defaultlib.glbl -log elaborate.log"
+Vivado Simulator 2020.2
+Copyright 1986-1999, 2001-2020 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2020.2/bin/unwrapped/win64.o/xelab.exe -wto b365e240206e4a08ab0a42134b938294 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot Booth_Multiplier_4bit_t_behav xil_defaultlib.Booth_Multiplier_4bit_t xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.Booth_Multiplier_4bit
+Compiling module xil_defaultlib.Booth_Multiplier_4bit_t
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot Booth_Multiplier_4bit_t_behav
+INFO: [USF-XSim-69] 'elaborate' step finished in '3' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "Booth_Multiplier_4bit_t_behav -key {Behavioral:sim_1:Functional:Booth_Multiplier_4bit_t} -tclbatch {Booth_Multiplier_4bit_t.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2020.2
+Time resolution is 1 ps
+source Booth_Multiplier_4bit_t.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'Booth_Multiplier_4bit_t_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:03 ; elapsed = 00:00:06 . Memory (MB): peak = 1007.770 ; gain = 0.000
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'Booth_Multiplier_4bit_t' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj Booth_Multiplier_4bit_t_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Booth_Multiplier_4bit
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit_t.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Booth_Multiplier_4bit_t
+INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+"xelab -wto b365e240206e4a08ab0a42134b938294 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot Booth_Multiplier_4bit_t_behav xil_defaultlib.Booth_Multiplier_4bit_t xil_defaultlib.glbl -log elaborate.log"
+Vivado Simulator 2020.2
+Copyright 1986-1999, 2001-2020 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2020.2/bin/unwrapped/win64.o/xelab.exe -wto b365e240206e4a08ab0a42134b938294 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot Booth_Multiplier_4bit_t_behav xil_defaultlib.Booth_Multiplier_4bit_t xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.Booth_Multiplier_4bit
+Compiling module xil_defaultlib.Booth_Multiplier_4bit_t
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot Booth_Multiplier_4bit_t_behav
+INFO: [USF-XSim-69] 'elaborate' step finished in '2' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "Booth_Multiplier_4bit_t_behav -key {Behavioral:sim_1:Functional:Booth_Multiplier_4bit_t} -tclbatch {Booth_Multiplier_4bit_t.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2020.2
+Time resolution is 1 ps
+source Booth_Multiplier_4bit_t.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'Booth_Multiplier_4bit_t_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:03 ; elapsed = 00:00:05 . Memory (MB): peak = 1007.770 ; gain = 0.000
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'Booth_Multiplier_4bit_t' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj Booth_Multiplier_4bit_t_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Booth_Multiplier_4bit
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit_t.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Booth_Multiplier_4bit_t
+INFO: [USF-XSim-69] 'compile' step finished in '2' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+"xelab -wto b365e240206e4a08ab0a42134b938294 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot Booth_Multiplier_4bit_t_behav xil_defaultlib.Booth_Multiplier_4bit_t xil_defaultlib.glbl -log elaborate.log"
+Vivado Simulator 2020.2
+Copyright 1986-1999, 2001-2020 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2020.2/bin/unwrapped/win64.o/xelab.exe -wto b365e240206e4a08ab0a42134b938294 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot Booth_Multiplier_4bit_t_behav xil_defaultlib.Booth_Multiplier_4bit_t xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.Booth_Multiplier_4bit
+Compiling module xil_defaultlib.Booth_Multiplier_4bit_t
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot Booth_Multiplier_4bit_t_behav
+INFO: [USF-XSim-69] 'elaborate' step finished in '1' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "Booth_Multiplier_4bit_t_behav -key {Behavioral:sim_1:Functional:Booth_Multiplier_4bit_t} -tclbatch {Booth_Multiplier_4bit_t.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2020.2
+Time resolution is 1 ps
+source Booth_Multiplier_4bit_t.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'Booth_Multiplier_4bit_t_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:02 ; elapsed = 00:00:05 . Memory (MB): peak = 1007.770 ; gain = 0.000
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'Booth_Multiplier_4bit_t' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj Booth_Multiplier_4bit_t_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Booth_Multiplier_4bit
+ERROR: [VRFC 10-4982] syntax error near 'i' [C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v:74]
+ERROR: [VRFC 10-2865] module 'Booth_Multiplier_4bit' ignored due to previous errors [C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v:3]
+INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
+INFO: [USF-XSim-99] Step results log file:'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim/xvlog.log'
+ERROR: [USF-XSim-62] 'compile' step failed with error(s). Please check the Tcl console output or 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim/xvlog.log' file for more information.
+ERROR: [Vivado 12-4473] Detected error while running simulation. Please correct the issue and retry this operation.
+ERROR: [Common 17-39] 'launch_simulation' failed due to earlier errors.
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'Booth_Multiplier_4bit_t' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj Booth_Multiplier_4bit_t_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Booth_Multiplier_4bit
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit_t.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Booth_Multiplier_4bit_t
+INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+"xelab -wto b365e240206e4a08ab0a42134b938294 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot Booth_Multiplier_4bit_t_behav xil_defaultlib.Booth_Multiplier_4bit_t xil_defaultlib.glbl -log elaborate.log"
+Vivado Simulator 2020.2
+Copyright 1986-1999, 2001-2020 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2020.2/bin/unwrapped/win64.o/xelab.exe -wto b365e240206e4a08ab0a42134b938294 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot Booth_Multiplier_4bit_t_behav xil_defaultlib.Booth_Multiplier_4bit_t xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.Booth_Multiplier_4bit
+Compiling module xil_defaultlib.Booth_Multiplier_4bit_t
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot Booth_Multiplier_4bit_t_behav
+INFO: [USF-XSim-69] 'elaborate' step finished in '1' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "Booth_Multiplier_4bit_t_behav -key {Behavioral:sim_1:Functional:Booth_Multiplier_4bit_t} -tclbatch {Booth_Multiplier_4bit_t.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2020.2
+Time resolution is 1 ps
+source Booth_Multiplier_4bit_t.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'Booth_Multiplier_4bit_t_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:02 ; elapsed = 00:00:06 . Memory (MB): peak = 1007.770 ; gain = 0.000
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'Booth_Multiplier_4bit_t' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj Booth_Multiplier_4bit_t_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Booth_Multiplier_4bit
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit_t.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Booth_Multiplier_4bit_t
+INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+"xelab -wto b365e240206e4a08ab0a42134b938294 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot Booth_Multiplier_4bit_t_behav xil_defaultlib.Booth_Multiplier_4bit_t xil_defaultlib.glbl -log elaborate.log"
+Vivado Simulator 2020.2
+Copyright 1986-1999, 2001-2020 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2020.2/bin/unwrapped/win64.o/xelab.exe -wto b365e240206e4a08ab0a42134b938294 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot Booth_Multiplier_4bit_t_behav xil_defaultlib.Booth_Multiplier_4bit_t xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.Booth_Multiplier_4bit
+Compiling module xil_defaultlib.Booth_Multiplier_4bit_t
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot Booth_Multiplier_4bit_t_behav
+INFO: [USF-XSim-69] 'elaborate' step finished in '2' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "Booth_Multiplier_4bit_t_behav -key {Behavioral:sim_1:Functional:Booth_Multiplier_4bit_t} -tclbatch {Booth_Multiplier_4bit_t.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2020.2
+Time resolution is 1 ps
+source Booth_Multiplier_4bit_t.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'Booth_Multiplier_4bit_t_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:02 ; elapsed = 00:00:06 . Memory (MB): peak = 1007.770 ; gain = 0.000
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'Booth_Multiplier_4bit_t' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj Booth_Multiplier_4bit_t_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Booth_Multiplier_4bit
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit_t.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Booth_Multiplier_4bit_t
+INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+"xelab -wto b365e240206e4a08ab0a42134b938294 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot Booth_Multiplier_4bit_t_behav xil_defaultlib.Booth_Multiplier_4bit_t xil_defaultlib.glbl -log elaborate.log"
+Vivado Simulator 2020.2
+Copyright 1986-1999, 2001-2020 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2020.2/bin/unwrapped/win64.o/xelab.exe -wto b365e240206e4a08ab0a42134b938294 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot Booth_Multiplier_4bit_t_behav xil_defaultlib.Booth_Multiplier_4bit_t xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.Booth_Multiplier_4bit
+Compiling module xil_defaultlib.Booth_Multiplier_4bit_t
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot Booth_Multiplier_4bit_t_behav
+INFO: [USF-XSim-69] 'elaborate' step finished in '2' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "Booth_Multiplier_4bit_t_behav -key {Behavioral:sim_1:Functional:Booth_Multiplier_4bit_t} -tclbatch {Booth_Multiplier_4bit_t.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2020.2
+Time resolution is 1 ps
+source Booth_Multiplier_4bit_t.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'Booth_Multiplier_4bit_t_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:02 ; elapsed = 00:00:05 . Memory (MB): peak = 1007.770 ; gain = 0.000
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'Booth_Multiplier_4bit_t' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj Booth_Multiplier_4bit_t_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Booth_Multiplier_4bit
+ERROR: [VRFC 10-2989] 'ADD' is not declared [C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v:30]
+ERROR: [VRFC 10-2989] 'NM' is not declared [C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v:45]
+ERROR: [VRFC 10-2989] 'NM' is not declared [C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v:49]
+ERROR: [VRFC 10-2989] 'q2' is not declared [C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v:56]
+ERROR: [VRFC 10-2989] 'NM' is not declared [C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v:69]
+ERROR: [VRFC 10-2865] module 'Booth_Multiplier_4bit' ignored due to previous errors [C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v:3]
+INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
+INFO: [USF-XSim-99] Step results log file:'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim/xvlog.log'
+ERROR: [USF-XSim-62] 'compile' step failed with error(s). Please check the Tcl console output or 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim/xvlog.log' file for more information.
+ERROR: [Vivado 12-4473] Detected error while running simulation. Please correct the issue and retry this operation.
+ERROR: [Common 17-39] 'launch_simulation' failed due to earlier errors.
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'Booth_Multiplier_4bit_t' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj Booth_Multiplier_4bit_t_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Booth_Multiplier_4bit
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit_t.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Booth_Multiplier_4bit_t
+INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+"xelab -wto b365e240206e4a08ab0a42134b938294 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot Booth_Multiplier_4bit_t_behav xil_defaultlib.Booth_Multiplier_4bit_t xil_defaultlib.glbl -log elaborate.log"
+Vivado Simulator 2020.2
+Copyright 1986-1999, 2001-2020 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2020.2/bin/unwrapped/win64.o/xelab.exe -wto b365e240206e4a08ab0a42134b938294 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot Booth_Multiplier_4bit_t_behav xil_defaultlib.Booth_Multiplier_4bit_t xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.Booth_Multiplier_4bit
+Compiling module xil_defaultlib.Booth_Multiplier_4bit_t
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot Booth_Multiplier_4bit_t_behav
+INFO: [USF-XSim-69] 'elaborate' step finished in '2' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "Booth_Multiplier_4bit_t_behav -key {Behavioral:sim_1:Functional:Booth_Multiplier_4bit_t} -tclbatch {Booth_Multiplier_4bit_t.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2020.2
+Time resolution is 1 ps
+source Booth_Multiplier_4bit_t.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'Booth_Multiplier_4bit_t_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:02 ; elapsed = 00:00:05 . Memory (MB): peak = 1007.770 ; gain = 0.000
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'Booth_Multiplier_4bit_t' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj Booth_Multiplier_4bit_t_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Booth_Multiplier_4bit
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit_t.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Booth_Multiplier_4bit_t
+INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+"xelab -wto b365e240206e4a08ab0a42134b938294 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot Booth_Multiplier_4bit_t_behav xil_defaultlib.Booth_Multiplier_4bit_t xil_defaultlib.glbl -log elaborate.log"
+Vivado Simulator 2020.2
+Copyright 1986-1999, 2001-2020 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2020.2/bin/unwrapped/win64.o/xelab.exe -wto b365e240206e4a08ab0a42134b938294 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot Booth_Multiplier_4bit_t_behav xil_defaultlib.Booth_Multiplier_4bit_t xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.Booth_Multiplier_4bit
+Compiling module xil_defaultlib.Booth_Multiplier_4bit_t
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot Booth_Multiplier_4bit_t_behav
+INFO: [USF-XSim-69] 'elaborate' step finished in '2' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "Booth_Multiplier_4bit_t_behav -key {Behavioral:sim_1:Functional:Booth_Multiplier_4bit_t} -tclbatch {Booth_Multiplier_4bit_t.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2020.2
+Time resolution is 1 ps
+source Booth_Multiplier_4bit_t.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'Booth_Multiplier_4bit_t_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:02 ; elapsed = 00:00:05 . Memory (MB): peak = 1007.770 ; gain = 0.000
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'Booth_Multiplier_4bit_t' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj Booth_Multiplier_4bit_t_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Booth_Multiplier_4bit
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit_t.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Booth_Multiplier_4bit_t
+INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+"xelab -wto b365e240206e4a08ab0a42134b938294 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot Booth_Multiplier_4bit_t_behav xil_defaultlib.Booth_Multiplier_4bit_t xil_defaultlib.glbl -log elaborate.log"
+Vivado Simulator 2020.2
+Copyright 1986-1999, 2001-2020 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2020.2/bin/unwrapped/win64.o/xelab.exe -wto b365e240206e4a08ab0a42134b938294 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot Booth_Multiplier_4bit_t_behav xil_defaultlib.Booth_Multiplier_4bit_t xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.Booth_Multiplier_4bit
+Compiling module xil_defaultlib.Booth_Multiplier_4bit_t
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot Booth_Multiplier_4bit_t_behav
+INFO: [USF-XSim-69] 'elaborate' step finished in '2' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "Booth_Multiplier_4bit_t_behav -key {Behavioral:sim_1:Functional:Booth_Multiplier_4bit_t} -tclbatch {Booth_Multiplier_4bit_t.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2020.2
+Time resolution is 1 ps
+source Booth_Multiplier_4bit_t.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'Booth_Multiplier_4bit_t_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:02 ; elapsed = 00:00:05 . Memory (MB): peak = 1091.934 ; gain = 0.000
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'Booth_Multiplier_4bit_t' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj Booth_Multiplier_4bit_t_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Booth_Multiplier_4bit
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit_t.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Booth_Multiplier_4bit_t
+INFO: [USF-XSim-69] 'compile' step finished in '2' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+"xelab -wto b365e240206e4a08ab0a42134b938294 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot Booth_Multiplier_4bit_t_behav xil_defaultlib.Booth_Multiplier_4bit_t xil_defaultlib.glbl -log elaborate.log"
+Vivado Simulator 2020.2
+Copyright 1986-1999, 2001-2020 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2020.2/bin/unwrapped/win64.o/xelab.exe -wto b365e240206e4a08ab0a42134b938294 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot Booth_Multiplier_4bit_t_behav xil_defaultlib.Booth_Multiplier_4bit_t xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.Booth_Multiplier_4bit
+Compiling module xil_defaultlib.Booth_Multiplier_4bit_t
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot Booth_Multiplier_4bit_t_behav
+INFO: [USF-XSim-69] 'elaborate' step finished in '2' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "Booth_Multiplier_4bit_t_behav -key {Behavioral:sim_1:Functional:Booth_Multiplier_4bit_t} -tclbatch {Booth_Multiplier_4bit_t.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2020.2
+Time resolution is 1 ps
+source Booth_Multiplier_4bit_t.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'Booth_Multiplier_4bit_t_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:02 ; elapsed = 00:00:06 . Memory (MB): peak = 1091.934 ; gain = 0.000
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'Booth_Multiplier_4bit_t' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj Booth_Multiplier_4bit_t_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Booth_Multiplier_4bit
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit_t.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Booth_Multiplier_4bit_t
+INFO: [USF-XSim-69] 'compile' step finished in '2' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+"xelab -wto b365e240206e4a08ab0a42134b938294 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot Booth_Multiplier_4bit_t_behav xil_defaultlib.Booth_Multiplier_4bit_t xil_defaultlib.glbl -log elaborate.log"
+Vivado Simulator 2020.2
+Copyright 1986-1999, 2001-2020 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2020.2/bin/unwrapped/win64.o/xelab.exe -wto b365e240206e4a08ab0a42134b938294 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot Booth_Multiplier_4bit_t_behav xil_defaultlib.Booth_Multiplier_4bit_t xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.Booth_Multiplier_4bit
+Compiling module xil_defaultlib.Booth_Multiplier_4bit_t
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot Booth_Multiplier_4bit_t_behav
+INFO: [USF-XSim-69] 'elaborate' step finished in '2' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "Booth_Multiplier_4bit_t_behav -key {Behavioral:sim_1:Functional:Booth_Multiplier_4bit_t} -tclbatch {Booth_Multiplier_4bit_t.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2020.2
+Time resolution is 1 ps
+source Booth_Multiplier_4bit_t.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'Booth_Multiplier_4bit_t_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:02 ; elapsed = 00:00:05 . Memory (MB): peak = 1259.629 ; gain = 0.000
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'Booth_Multiplier_4bit_t' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj Booth_Multiplier_4bit_t_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Booth_Multiplier_4bit
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit_t.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Booth_Multiplier_4bit_t
+INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+"xelab -wto b365e240206e4a08ab0a42134b938294 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot Booth_Multiplier_4bit_t_behav xil_defaultlib.Booth_Multiplier_4bit_t xil_defaultlib.glbl -log elaborate.log"
+Vivado Simulator 2020.2
+Copyright 1986-1999, 2001-2020 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2020.2/bin/unwrapped/win64.o/xelab.exe -wto b365e240206e4a08ab0a42134b938294 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot Booth_Multiplier_4bit_t_behav xil_defaultlib.Booth_Multiplier_4bit_t xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.Booth_Multiplier_4bit
+Compiling module xil_defaultlib.Booth_Multiplier_4bit_t
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot Booth_Multiplier_4bit_t_behav
+INFO: [USF-XSim-69] 'elaborate' step finished in '2' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "Booth_Multiplier_4bit_t_behav -key {Behavioral:sim_1:Functional:Booth_Multiplier_4bit_t} -tclbatch {Booth_Multiplier_4bit_t.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2020.2
+Time resolution is 1 ps
+source Booth_Multiplier_4bit_t.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'Booth_Multiplier_4bit_t_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:02 ; elapsed = 00:00:05 . Memory (MB): peak = 1259.629 ; gain = 0.000
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'Booth_Multiplier_4bit_t' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj Booth_Multiplier_4bit_t_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Booth_Multiplier_4bit
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit_t.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Booth_Multiplier_4bit_t
+INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+"xelab -wto b365e240206e4a08ab0a42134b938294 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot Booth_Multiplier_4bit_t_behav xil_defaultlib.Booth_Multiplier_4bit_t xil_defaultlib.glbl -log elaborate.log"
+Vivado Simulator 2020.2
+Copyright 1986-1999, 2001-2020 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2020.2/bin/unwrapped/win64.o/xelab.exe -wto b365e240206e4a08ab0a42134b938294 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot Booth_Multiplier_4bit_t_behav xil_defaultlib.Booth_Multiplier_4bit_t xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.Booth_Multiplier_4bit
+Compiling module xil_defaultlib.Booth_Multiplier_4bit_t
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot Booth_Multiplier_4bit_t_behav
+INFO: [USF-XSim-69] 'elaborate' step finished in '2' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "Booth_Multiplier_4bit_t_behav -key {Behavioral:sim_1:Functional:Booth_Multiplier_4bit_t} -tclbatch {Booth_Multiplier_4bit_t.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2020.2
+Time resolution is 1 ps
+source Booth_Multiplier_4bit_t.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'Booth_Multiplier_4bit_t_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:01 ; elapsed = 00:00:05 . Memory (MB): peak = 1757.445 ; gain = 0.000
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'Booth_Multiplier_4bit_t' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj Booth_Multiplier_4bit_t_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Booth_Multiplier_4bit
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Booth_Multiplier_4bit_t.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Booth_Multiplier_4bit_t
+INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+"xelab -wto b365e240206e4a08ab0a42134b938294 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot Booth_Multiplier_4bit_t_behav xil_defaultlib.Booth_Multiplier_4bit_t xil_defaultlib.glbl -log elaborate.log"
+Vivado Simulator 2020.2
+Copyright 1986-1999, 2001-2020 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2020.2/bin/unwrapped/win64.o/xelab.exe -wto b365e240206e4a08ab0a42134b938294 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot Booth_Multiplier_4bit_t_behav xil_defaultlib.Booth_Multiplier_4bit_t xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.Booth_Multiplier_4bit
+Compiling module xil_defaultlib.Booth_Multiplier_4bit_t
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot Booth_Multiplier_4bit_t_behav
+INFO: [USF-XSim-69] 'elaborate' step finished in '2' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'E:/lab5/bonus/bonus.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "Booth_Multiplier_4bit_t_behav -key {Behavioral:sim_1:Functional:Booth_Multiplier_4bit_t} -tclbatch {Booth_Multiplier_4bit_t.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2020.2
+Time resolution is 1 ps
+source Booth_Multiplier_4bit_t.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'Booth_Multiplier_4bit_t_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:02 ; elapsed = 00:00:06 . Memory (MB): peak = 1757.445 ; gain = 0.000
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+exit
+INFO: [Common 17-206] Exiting Vivado at Wed Nov 23 16:14:24 2022...

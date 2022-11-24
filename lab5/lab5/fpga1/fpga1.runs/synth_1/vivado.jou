@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Thu Nov 24 14:00:26 2022
+# Process ID: 5576
+# Current directory: E:/lab5/fpga1/fpga1.runs/synth_1
+# Command line: vivado.exe -log music.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source music.tcl
+# Log file: E:/lab5/fpga1/fpga1.runs/synth_1/music.vds
+# Journal file: E:/lab5/fpga1/fpga1.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source music.tcl -notrace

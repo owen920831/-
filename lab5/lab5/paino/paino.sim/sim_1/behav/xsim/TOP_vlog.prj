@@ -1,0 +1,11 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../../../demo1_piano/Unit9_demo1_piano/Decoder.v" \
+"../../../../../../demo1_piano/Unit9_demo1_piano/PWM_gen.v" \
+"../../../../../../demo1_piano/Unit9_demo1_piano/TOP.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort
