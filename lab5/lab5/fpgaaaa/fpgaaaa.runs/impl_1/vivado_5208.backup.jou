@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Thu Nov 24 14:37:41 2022
+# Process ID: 5208
+# Current directory: E:/lab5/fpgaaaa/fpgaaaa.runs/impl_1
+# Command line: vivado.exe -log fpga1.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source fpga1.tcl -notrace
+# Log file: E:/lab5/fpgaaaa/fpgaaaa.runs/impl_1/fpga1.vdi
+# Journal file: E:/lab5/fpgaaaa/fpgaaaa.runs/impl_1\vivado.jou
+#-----------------------------------------------------------
+source fpga1.tcl -notrace

@@ -1,0 +1,8 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/demo1_piano/Unit9_demo1_piano/Decoder.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Decoder
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/demo1_piano/Unit9_demo1_piano/PWM_gen.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module PWM_gen
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/demo1_piano/Unit9_demo1_piano/TOP.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module TOP
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/lab5/paino/paino.sim/sim_1/behav/xsim/glbl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module glbl

@@ -1,0 +1,37 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Thu Nov 24 13:57:29 2022
+# Process ID: 18140
+# Current directory: E:/lab5/fpga1
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent11060 E:\lab5\fpga1\fpga1.xpr
+# Log file: E:/lab5/fpga1/vivado.log
+# Journal file: E:/lab5/fpga1\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project E:/lab5/fpga1/fpga1.xpr
+CRITICAL WARNING: [Project 1-19] Could not find the file 'C:/khris/大二上/Logic-Design-Laborator/Keyboard_and_Audio_Sample_Code/Keyboard_Sample_Code/KeyboardDecoder.v'.
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/khris/大二上/Logic-Design-Laborator/Keyboard_and_Audio_Sample_Code/Keyboard Sample Code/Keyboard Sample Code/ip'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2020.2/data/ip'.
+update_compile_order -fileset sources_1
+add_files -norecurse {{C:/khris/大二上/Logic-Design-Laborator/Keyboard_and_Audio_Sample_Code/Keyboard Sample Code/Keyboard Sample Code/KeyboardDecoder.v}}
+WARNING: [filemgmt 56-12] File 'C:/khris/大二上/Logic-Design-Laborator/Keyboard_and_Audio_Sample_Code/Keyboard Sample Code/Keyboard Sample Code/KeyboardDecoder.v' cannot be added to the project because it already exists in the project, skipping this file
+add_files -norecurse {{C:/khris/大二上/Logic-Design-Laborator/Keyboard_and_Audio_Sample_Code/Keyboard Sample Code/Keyboard Sample Code/KeyboardDecoder.v}}
+WARNING: [filemgmt 56-12] File 'C:/khris/大二上/Logic-Design-Laborator/Keyboard_and_Audio_Sample_Code/Keyboard Sample Code/Keyboard Sample Code/KeyboardDecoder.v' cannot be added to the project because it already exists in the project, skipping this file
+export_ip_user_files -of_objects  [get_files C:/khris/大二上/Logic-Design-Laborator/Keyboard_and_Audio_Sample_Code/Keyboard_Sample_Code/KeyboardDecoder.v] -no_script -reset -force -quiet
+remove_files  C:/khris/大二上/Logic-Design-Laborator/Keyboard_and_Audio_Sample_Code/Keyboard_Sample_Code/KeyboardDecoder.v
+add_files -norecurse {{C:/khris/大二上/Logic-Design-Laborator/Keyboard_and_Audio_Sample_Code/Keyboard Sample Code/Keyboard Sample Code/KeyboardDecoder.v}}
+WARNING: [filemgmt 56-12] File 'C:/khris/大二上/Logic-Design-Laborator/Keyboard_and_Audio_Sample_Code/Keyboard Sample Code/Keyboard Sample Code/KeyboardDecoder.v' cannot be added to the project because it already exists in the project, skipping this file
+reset_run KeyboardCtrl_0_synth_1
+reset_run synth_1
+launch_runs synth_1 -jobs 8
+[Thu Nov 24 14:00:16 2022] Launched KeyboardCtrl_0_synth_1...
+Run output will be captured here: E:/lab5/fpga1/fpga1.runs/KeyboardCtrl_0_synth_1/runme.log
+[Thu Nov 24 14:00:17 2022] Launched synth_1...
+Run output will be captured here: E:/lab5/fpga1/fpga1.runs/synth_1/runme.log
+exit
+INFO: [Common 17-206] Exiting Vivado at Thu Nov 24 14:03:58 2022...

@@ -1,0 +1,53 @@
+
+*** Running vivado
+    with args -log music.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source music.tcl
+
+
+
+****** Vivado v2020.2 (64-bit)
+  **** SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+  **** IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+    ** Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+
+source music.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/khris/大二上/Logic-Design-Laborator/Keyboard_and_Audio_Sample_Code/Keyboard Sample Code/Keyboard Sample Code/ip'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2020.2/data/ip'.
+Command: synth_design -top music -part xc7a35tcpg236-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Device 21-403] Loading part xc7a35tcpg236-1
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 7504
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1017.320 ; gain = 0.000
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'music' [C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Music_fpga.v:75]
+	Parameter KEY_CODES_ent bound to: 9'b001011010 
+	Parameter KEY_CODES_s bound to: 9'b000011011 
+	Parameter KEY_CODES_w bound to: 9'b000011101 
+	Parameter KEY_CODES_r bound to: 9'b000101101 
+INFO: [Synth 8-6157] synthesizing module 'KeyboardDecoder' [C:/khris/大二上/Logic-Design-Laborator/Keyboard_and_Audio_Sample_Code/Keyboard Sample Code/Keyboard Sample Code/KeyboardDecoder.v:1]
+	Parameter INIT bound to: 2'b00 
+	Parameter WAIT_FOR_SIGNAL bound to: 2'b01 
+	Parameter GET_SIGNAL_DOWN bound to: 2'b10 
+	Parameter WAIT_RELEASE bound to: 2'b11 
+	Parameter IS_INIT bound to: 8'b10101010 
+	Parameter IS_EXTEND bound to: 8'b11100000 
+	Parameter IS_BREAK bound to: 8'b11110000 
+INFO: [Synth 8-6157] synthesizing module 'KeyboardCtrl_0' [E:/lab5/fpga1/fpga1.runs/synth_1/.Xil/Vivado-5576-LAPTOP-UUK7QIG6/realtime/KeyboardCtrl_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'KeyboardCtrl_0' (1#1) [E:/lab5/fpga1/fpga1.runs/synth_1/.Xil/Vivado-5576-LAPTOP-UUK7QIG6/realtime/KeyboardCtrl_0_stub.v:6]
+ERROR: [Synth 8-439] module 'OnePulse' not found [C:/khris/大二上/Logic-Design-Laborator/Keyboard_and_Audio_Sample_Code/Keyboard Sample Code/Keyboard Sample Code/KeyboardDecoder.v:46]
+ERROR: [Synth 8-6156] failed synthesizing module 'KeyboardDecoder' [C:/khris/大二上/Logic-Design-Laborator/Keyboard_and_Audio_Sample_Code/Keyboard Sample Code/Keyboard Sample Code/KeyboardDecoder.v:1]
+ERROR: [Synth 8-6156] failed synthesizing module 'music' [C:/khris/大二上/Logic-Design-Laborator/lab5/Lab5_TeamX_Music_fpga.v:75]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1017.320 ; gain = 0.000
+---------------------------------------------------------------------------------
+RTL Elaboration failed
+INFO: [Common 17-83] Releasing license: Synthesis
+13 Infos, 0 Warnings, 0 Critical Warnings and 4 Errors encountered.
+synth_design failed
+ERROR: [Common 17-69] Command failed: Synthesis failed - please see the console or run log file for details
+INFO: [Common 17-206] Exiting Vivado at Thu Nov 24 14:00:38 2022...

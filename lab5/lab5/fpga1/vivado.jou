@@ -1,0 +1,23 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Thu Nov 24 13:57:29 2022
+# Process ID: 18140
+# Current directory: E:/lab5/fpga1
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent11060 E:\lab5\fpga1\fpga1.xpr
+# Log file: E:/lab5/fpga1/vivado.log
+# Journal file: E:/lab5/fpga1\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project E:/lab5/fpga1/fpga1.xpr
+update_compile_order -fileset sources_1
+add_files -norecurse {{C:/khris/大二上/Logic-Design-Laborator/Keyboard_and_Audio_Sample_Code/Keyboard Sample Code/Keyboard Sample Code/KeyboardDecoder.v}}
+add_files -norecurse {{C:/khris/大二上/Logic-Design-Laborator/Keyboard_and_Audio_Sample_Code/Keyboard Sample Code/Keyboard Sample Code/KeyboardDecoder.v}}
+export_ip_user_files -of_objects  [get_files C:/khris/大二上/Logic-Design-Laborator/Keyboard_and_Audio_Sample_Code/Keyboard_Sample_Code/KeyboardDecoder.v] -no_script -reset -force -quiet
+remove_files  C:/khris/大二上/Logic-Design-Laborator/Keyboard_and_Audio_Sample_Code/Keyboard_Sample_Code/KeyboardDecoder.v
+add_files -norecurse {{C:/khris/大二上/Logic-Design-Laborator/Keyboard_and_Audio_Sample_Code/Keyboard Sample Code/Keyboard Sample Code/KeyboardDecoder.v}}
+reset_run KeyboardCtrl_0_synth_1
+reset_run synth_1
+launch_runs synth_1 -jobs 8
+wait_on_run synth_1

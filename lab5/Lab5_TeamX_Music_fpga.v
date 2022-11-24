@@ -84,8 +84,8 @@ wire [31:0] freq;
 assign pmod_2 = 1'd1;	//no gain(6dB)
 assign pmod_4 = 1'd1;	//turn-on
 
-reg rst_n;
-reg [4:0] tone;
+wire rst;
+reg [4:0] next_tone, tone;
 reg dir;
 integer i;
 wire [511:0] key_down;
@@ -96,6 +96,7 @@ parameter [8:0] KEY_CODES_ent = 9'b0_0101_1010; // enter => 5A
 parameter [8:0] KEY_CODES_s = 9'b0_0001_1011; // s => 1b
 parameter [8:0] KEY_CODES_w = 9'b0_0001_1101; // w => 1D
 parameter [8:0] KEY_CODES_r = 9'b0_0010_1101; // f => 2D
+assign rst = (been_ready && key_down[last_change] && last_change == ENTER);
 
 KeyboardDecoder key_de (
     .key_down(key_down),
@@ -107,26 +108,19 @@ KeyboardDecoder key_de (
     .clk(clk)
 ); 
 
-always @(*) begin  // press enter => rst_n
-    if (been_ready && last_change == KEY_CODES_ent) begin
-        rst_n = 1'b0;
-    end
-    else rst_n = 1'b1;
-end
-
 always @(*) begin  // press w || s change the direction
     if (been_ready) begin
-        if (last_change == KEY_CODES_w) begin
-            dir = 1'b1;
+        if (last_change == KEY_CODES_w && key_down[last_change]) begin
+            next_dir = 1'b1;
         end
-        if (last_change == KEY_CODES_s) begin
-            dir = 1'b0;
+        if (last_change == KEY_CODES_s && key_down[last_change]) begin
+            next_dir = 1'b0;
         end
     end    
 end
 
 always @(*) begin  // press r, change beat
-    if (been_ready && last_change == KEY_CODES_r) begin
+    if (been_ready && last_change == KEY_CODES_r && key_down[last_change]) begin
         if (i == 32'd1) i = 32'd2;
         else i = 32'd1;
     end
@@ -140,38 +134,43 @@ Decoder decoder00 (
 PWM_gen gen_beat (
     .clk(clk),
     .freq(i),
-    .rst_n(rst_n),
+    .rst_n(rst),
     .duty(10'd512),
     .PWM(beatFreq)
 );
 
-always @(posedge beatFreq or negedge rst_n) begin
-    if (rst_n) begin
-        tone <= 5'd0;
-        dir <= 1'b1; 
-        i = 32'd1;
+always @(posedge beatFreq) begin
+    if (rst) begin
+        tone <= 0;
+        dir <= 1;
+    end else begin
+        tone <= next_tone;
+        dir <= next_dir;
     end
+end
+
+always @(*) begin
     if (dir) begin
         if (tone < 5'd28) begin
-            tone <= tone + 5'd1;
+            next_tone = tone + 5'd1;
         end
         else begin
-            tone <= tone;
+            next_tone = tone;
         end
     end
     else begin
         if (tone > 5'd0) begin
-            tone <= tone - 5'd1;
+            next_tone = tone - 5'd1;
         end
         else begin
-            tone <= tone;
+            next_tone = tone;
         end
     end
 end
 
 PWM_gen gen_music ( 
 	.clk(clk), 
-	.rst_n(rst_n), 
+	.rst_n(rst), 
 	.freq(freq),
 	.duty(10'd512), 
 	.PWM(pmod_1)

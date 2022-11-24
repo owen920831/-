@@ -19,7 +19,7 @@ reg [3:0] Q, M, A, NM, add, sub;
 reg [7:0] p;
 
 always @(posedge clk) begin
-	if (!rst_n) cur_state = WAIT;
+	if (!rst_n) cur_state <= WAIT;
 	else cur_state <= next_state;
 end
 
@@ -85,17 +85,17 @@ always @ (posedge clk) begin
                         q0 <= Q[0];
                     end
                     2'b01: begin
-                        A[3] = add[3];
-                        A[2:0] = add[3:1];
-                        Q[3] = add[0];
-                        Q[2:0] = Q[3:1];
+                        A[3] <= add[3];
+                        A[2:0] <= add[3:1];
+                        Q[3] <= add[0];
+                        Q[2:0] <= Q[3:1];
                         q0 <= Q[0];
                     end
                     2'b10: begin
-                        A[3] = sub[3];
-                        A[2:0] = sub[3:1];
-                        Q[3] = sub[0];
-                        Q[2:0] = Q[3:1];
+                        A[3] <= sub[3];
+                        A[2:0] <= sub[3:1];
+                        Q[3] <= sub[0];
+                        Q[2:0] <= Q[3:1];
                         q0 <= Q[0];
                     end
                 endcase

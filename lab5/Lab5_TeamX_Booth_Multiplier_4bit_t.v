@@ -28,13 +28,27 @@ module Booth_Multiplier_4bit_t;
         #4 start = 0;
         a = 0;
         b = 0;
-        #40
         #4 start = 1;
         a = 5;
         b = 3;
         #4 start = 0;
         a = 0;
         b = 0;
+        #40
+        #4 start = 1;
+        a = 5;
+        b = -3;
+        #4 start = 0;
+        a = 0;
+        b = 0;
+        #40
+        #4 start = 1;
+        a = -5;
+        b = -3;
+        #4 start = 0;
+        a = 0;
+        b = 0;
+
     end
 
 endmodule
