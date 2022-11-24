@@ -145,7 +145,7 @@ PWM_gen gen_beat (
     .PWM(beatFreq)
 );
 
-always @(posedge beatFreq, negedge rst_n) begin
+always @(posedge beatFreq or negedge rst_n) begin
     if (rst_n) begin
         tone <= 5'd0;
         dir <= 1'b1; 

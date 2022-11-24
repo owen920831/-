@@ -31,7 +31,7 @@ module KeyboardDecoder(
     wire [511:0] key_decode = 1 << last_change;
     assign last_change = {key[9], key[7:0]};
     
-    KeyboardCtrl inst (
+    KeyboardCtrl_0 inst (
         .key_in(key_in),
         .is_extend(is_extend),
         .is_break(is_break),
