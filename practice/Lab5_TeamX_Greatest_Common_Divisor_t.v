@@ -7,6 +7,7 @@ module Greatest_Common_Divisor_t;
     reg rst_n = 0;
     wire [15:0] gcd;
     wire done;
+    wire [1:0] state;
 
     parameter cyc = 4;
     always # (cyc/2) clk = ~clk;
@@ -18,7 +19,8 @@ module Greatest_Common_Divisor_t;
         .clk(clk),
         .rst_n(rst_n),
         .gcd(gcd),
-        .done(done)
+        .done(done),
+        .state(state)
     );
     
     initial begin
@@ -27,9 +29,15 @@ module Greatest_Common_Divisor_t;
         #4 start = 1;
         a = 108;
         b = 36;
-        #4 start = 0;
+        #4 
         a = 0;
         b = 0;
+        #24
+        a = 16;
+        b = 16;
+        #8
+        a = 12;
+        b = 16;
 
     end
 endmodule

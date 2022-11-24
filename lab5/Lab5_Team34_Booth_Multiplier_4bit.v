@@ -16,10 +16,12 @@ reg q0;
 reg [1:0] cur_state, next_state;
 reg [2:0] count;
 reg [3:0] Q, M, A, NM, add, sub;
-reg [7:0] p;
+reg signed [7:0] p, pp;
+reg flag;
+
 
 always @(posedge clk) begin
-	if (!rst_n) cur_state = WAIT;
+	if (!rst_n) cur_state <= WAIT;
 	else cur_state <= next_state;
 end
 
@@ -64,6 +66,10 @@ always @ (posedge clk) begin
 			WAIT: begin
 				if (start) begin
 					Q <= b;
+					if (a == -8) begin
+						flag <= 1'b1;
+					end 
+					else flag <= 1'b0;
 					M <= a;
 					NM <= -a;
 					count <= 0;
@@ -85,25 +91,31 @@ always @ (posedge clk) begin
                         q0 <= Q[0];
                     end
                     2'b01: begin
-                        A[3] = add[3];
-                        A[2:0] = add[3:1];
-                        Q[3] = add[0];
-                        Q[2:0] = Q[3:1];
+                        A[3] <= add[3];
+                        A[2:0] <= add[3:1];
+                        Q[3] <= add[0];
+                        Q[2:0] <= Q[3:1];
                         q0 <= Q[0];
                     end
                     2'b10: begin
-                        A[3] = sub[3];
-                        A[2:0] = sub[3:1];
-                        Q[3] = sub[0];
-                        Q[2:0] = Q[3:1];
+                        A[3] <= sub[3];
+                        A[2:0] <= sub[3:1];
+                        Q[3] <= sub[0];
+                        Q[2:0] <= Q[3:1];
                         q0 <= Q[0];
                     end
                 endcase
 				p <= 8'd0;
 				count <= count + 1;
 			end
-			FINISH1: p <= {A, Q};
-			FINISH2: p <= {A, Q};
+			FINISH1: begin
+				p <= (flag)? -({A, Q}) : {A, Q};
+
+			end
+			FINISH2: begin
+				p <= (flag)? -({A, Q}) : {A, Q};
+
+			end
 		endcase
 	end
 end

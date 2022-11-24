@@ -23,18 +23,26 @@ module Booth_Multiplier_4bit_t;
         #4 rst_n = 0;
         #8 rst_n = 1;
         #4 start = 1;
-        a = -5;
-        b = 3;
+        a = -8;
+        b = 2;
         #4 start = 0;
         a = 0;
         b = 0;
         #40
         #4 start = 1;
         a = 5;
-        b = 3;
+        b = -3;
         #4 start = 0;
         a = 0;
         b = 0;
+        #40
+        #4 start = 1;
+        a = -5;
+        b = -3;
+        #4 start = 0;
+        a = 0;
+        b = 0;
+
     end
 
 endmodule
