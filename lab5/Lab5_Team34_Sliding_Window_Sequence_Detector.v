@@ -19,8 +19,7 @@ module Sliding_Window_Sequence_Detector (clk, rst_n, in, dec);
     reg [3:0] next_state;
     always @(posedge clk) begin
         if (!rst_n)begin
-            if (in) state <= S1;
-            else state <= S0;
+            state <= S0;
         end
         else begin
             state <= next_state;

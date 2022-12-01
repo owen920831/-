@@ -1,28 +1,26 @@
 `timescale 1ns/1ps 
 
-module Booth_Multiplier_4bit(clk, rst_n, start, a, b, p, state, tmp_p);
+module Booth_Multiplier_4bit(clk, rst_n, start, a, b, p);
     input clk;
     input rst_n; 
     input start;
     input signed [3:0] a, b;
     output signed [7:0] p;
-	output [9:0] tmp_p;
 
     parameter WAIT = 2'b00;
 	parameter CAL = 2'b01;
 	parameter FINISH = 2'b10;
 
-    reg [7:0] p, next_p;
-	output [1:0] state;
+    reg signed [7:0] p, next_p;
     reg [1:0] state, next_state;
 
     reg [1:0] cal_counter, next_cal_counter;
     reg finish_counter, next_finish_counter;
 
-	wire [9:0] ans = ~tmp_p+1'b1;
-    wire [4:0] a_5bit = {a[3], a}; //01
-    wire [4:0] a_5bit_cmp = ~({a[3], a})+1'b1; //10
-    reg [9:0] tmp_p, next_tmp_p;
+	wire signed[9:0] ans = ~tmp_p+1'b1;
+    wire signed[4:0] a_5bit = {a[3], a}; //01
+    wire signed[4:0] a_5bit_cmp = ~({a[3], a})+1'b1; //10
+    reg signed[9:0] tmp_p, next_tmp_p;
 	wire [9:0] add_a = {(tmp_p[9:5]+a_5bit), tmp_p[4:0]};
 	wire [9:0] add_a_cmp = {(tmp_p[9:5]+a_5bit_cmp), tmp_p[4:0]};
 
@@ -111,3 +109,4 @@ module Booth_Multiplier_4bit(clk, rst_n, start, a, b, p, state, tmp_p);
     end
 
 endmodule
+

@@ -84,23 +84,6 @@ always @(din) begin
         i = 15;
     end 
     else begin found = 1'b0; end
-    /*
-    dout_tmp = 4'b0000;
-    found = 1'b0;
-    hit_tmp = 1'b0;
-    for (i = 0; i < 16; i = i + 1) begin
-        if (cam[i] == din && !found) begin
-            found = 1'b1;
-            hit_tmp = 1'b1;
-            dout_tmp = i;
-        end
-        else begin
-            found = found;
-            hit_tmp = hit_tmp;
-            dout_tmp = dout_tmp;
-        end
-    end
-    */
 end
 
 always @(posedge clk) begin
