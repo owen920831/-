@@ -177,7 +177,7 @@ module main_vending_machine (clk, rst_n, NT_5, NT_10, NT_50, cancel, drink_selec
                         if (drink_selected == 3'b000 && current_money >= 8'd80|| 
                             drink_selected == 3'b001 && current_money >= 8'd30|| 
                             drink_selected == 3'b010 && current_money >= 8'd25|| 
-                            drink_selected == 3'b011 && current_money >= 8'd20) 
+                            drink_selected == 3'b011 & &current_money >= 8'd20) 
                             next_state = select;
                         else next_state = insert_money;
                     end

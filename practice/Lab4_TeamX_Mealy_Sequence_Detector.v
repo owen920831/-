@@ -22,8 +22,7 @@ module Mealy_Sequence_Detector (clk, rst_n, in, dec, state);
 
     always @(posedge clk) begin
         if (!rst_n) begin
-            if (in == 0) state <= s0;
-            else state <= s1;
+            state <= s0;
         end
         else state <= next_state;
     end

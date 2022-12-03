@@ -54,8 +54,8 @@ module Greatest_Common_Divisor (clk, rst_n, start, a, b, done, gcd, state);
                 else next_state = WAIT;
             end
             CAL: begin
-                if (0 != tmp_b) next_state = CAL;
-                else next_state = FINISH;
+                if (0 == tmp_b || 0 == tmp_a) next_state = FINISH;
+                else next_state = CAL;
             end
             FINISH : begin 
                 next_state = (finish_counter == 1'd1)? WAIT: FINISH;
