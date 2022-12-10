@@ -15,8 +15,8 @@ module sonic_top(clk, rst, Echo, Trig, stop, led);
 
     // [TO-DO] calculate the right distance to trig stop(triggered when the distance is lower than 40 cm)
     // Hint: using "dis"
-    wire stop = (dis * 20'd17 < 20'd40000) ? 1:0;
-    assign led = (stop == 1) ? 1: 0;
+    wire stop = (dis < 20'd40000) ? 1:0;
+    assign led = (stop == 1) ? 0:1;
  
 endmodule
 
