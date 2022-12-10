@@ -4,6 +4,7 @@ module tracker_sensor(clk, reset, left_signal, right_signal, mid_signal, state);
     input reset;
     input left_signal, right_signal, mid_signal;
     output reg [1:0] state;
+<<<<<<< HEAD
     reg [1:0] next_state;
 
     wire [2:0] signal = {left_signal, mid_signal, right_signal};
@@ -43,5 +44,11 @@ module tracker_sensor(clk, reset, left_signal, right_signal, mid_signal, state);
             end
         endcase 
     end
+=======
+
+    // [TO-DO] Receive three signals and make your own policy.
+    // Hint: You can use output state to change your action.
+    
+>>>>>>> 9208541cde942ae95950e7d11e72f5027cfd6727
 
 endmodule
