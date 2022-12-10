@@ -1,23 +1,28 @@
-`timescale 1ns/1ps
+`timescale 1ns / 1ps
 
-module Built_In_Self_Test_t();
-    reg clk = 0, rst_n = 0, scan_en = 0;
-    wire scan_in, scan_out;
 
-    Built_In_Self_Test m0 (
-        .clk(clk),
-        .rst_n(rst_n),
-        .scan_en(scan_en),
-        .scan_in(scan_in),
-        .scan_out(scan_out)
-    );
+module test_Built_In_Self_Test;
+    reg clk;
+    reg rst_n;
+    reg scan_en;
+    wire scan_in;
+    wire scan_out;
 
-    always #10 clk = ~clk;
 
+    Built_In_Self_Test B(clk, rst_n, scan_en, scan_in, scan_out);
+
+    always #(1) clk = ~clk;
     initial begin
-        #20 rst_n = 1; scan_en = 1;
-        #160 scan_en = 0;
-        #20 scan_en = 1;
-        #160 $finish(); 
+        clk = 1'b0;
+        rst_n = 1'b1;
+        scan_en = 1'b0;
+        #2 rst_n = 1'b0;
+        #2 rst_n = 1'b1;
+           scan_en = 1'b1;
+        #16 scan_en = 1'b0;
+        #2 scan_en = 1'b1;
+        #16 scan_en = 1'b0;
+        #3 scan_en = 1'b1;
+        #13 $finish;
     end
 endmodule

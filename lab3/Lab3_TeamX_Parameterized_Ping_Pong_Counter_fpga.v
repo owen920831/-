@@ -6,10 +6,7 @@ module Parameterized_Ping_Pong_Counter (clk, rst_n, enable, flip, max, min, seg,
     input flip;
     input [4-1:0] max;
     input [4-1:0] min;
-<<<<<<< HEAD
-    
-=======
->>>>>>> 31da0d59c38fd0719ca3e90165d1c95be08f9102
+
     output reg [6:0] seg;
     output reg [4-1:0] an;
 
@@ -191,14 +188,4 @@ module clk_div(     // generate counting clock
     end
     assign next_num = num + 1;
     assign clk_div = num[n-1];
-<<<<<<< HEAD
 endmodule
-=======
-<<<<<<< HEAD
-endmodule
-=======
-endmodule
-Footer
-© 2022 GitHub, Inc.
->>>>>>> 31da0d59c38fd0719ca3e90165d1c95be08f9102
->>>>>>> 3a8f217f275f10a44e6a6a0bc9b2bbaa7c354eb7

@@ -77,7 +77,8 @@ module Content_Addressable_Memory(clk, wen, ren, din, addr, dout, hit);
                 hit <= 4'b1;
             end
             else begin
-                
+                dout <= 0;
+                hit <= 0;
             end
         end
         else if (wen) begin
