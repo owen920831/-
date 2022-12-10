@@ -84,4 +84,3 @@ module onepulse (PB_debounced, clk, PB_one_pulse);
         PB_debounced_delay <= PB_debounced;
     end 
 endmodule
-
