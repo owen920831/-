@@ -26,7 +26,7 @@ module motor(
         //else  {left, right} = ???;
         case (mode)
             Stop: {left, right} = 4'b0000;
-            Forward: {left, right} = 4'b0101;
+            Forward: {left, right} = 4'b1010;
             Right: {left, right} = 4'b0111;
             Left: {left, right} = 4'b1101;
         endcase

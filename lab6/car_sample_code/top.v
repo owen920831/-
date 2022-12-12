@@ -13,11 +13,12 @@ module Top(
 );
 
     wire Rst_n, rst_pb, stop;
-    reg [1:0] state;
-    parameter Stop = 2'b00;
-    parameter Forward = 2'b01;
-    parameter Right = 2'b10;
-    parameter Left = 2'b11;
+    wire [2:0] state;
+    parameter Stop = 3'b000;
+    parameter Forward = 3'b001;
+    parameter Right = 3'b010;
+    parameter Left = 3'b011;
+    parameter Backward = 3'b100;
     debounce d0(rst_pb, rst, clk);
     onepulse d1(rst_pb, clk, Rst_n);
 
@@ -39,6 +40,7 @@ module Top(
     tracker_sensor C(
         .clk(clk), 
         .reset(rst_pb), 
+        .stop(stop),
         .left_signal(left_signal), 
         .right_signal(right_signal),
         .mid_signal(mid_signal), 
@@ -52,8 +54,9 @@ module Top(
         case (state)
             Stop: {left, right} = 4'b0000;
             Forward: {left, right} = 4'b0101;
-            Right: {left, right} = 4'b0100;
-            Left: {left, right} = 4'b0001;
+            Right: {left, right} = 4'b0111;
+            Left: {left, right} = 4'b1101;
+            Backward: {left, right} = 4'b1010;
         endcase
 
     end
