@@ -14,8 +14,8 @@ module sonic_top(clk, rst, Echo, Trig, stop);
 
     // [TO-DO] calculate the right distance to trig stop(triggered when the distance is lower than 40 cm)
     // Hint: using "dis"
-    assign stop = (dis < 20'd4000) ? 1:0;
- 
+    assign stop = 0;
+
 endmodule
 
 module PosCounter(clk, rst, echo, distance_count); 

@@ -36,20 +36,20 @@ module motor(
                 next_right_motor = 10'd0;
             end
             Forward: begin
-                next_left_motor = 10'd1000;
-                next_right_motor = 10'd1000;
+                next_left_motor = 10'd1023;
+                next_right_motor = 10'd1023;
             end
             Right: begin
-                next_left_motor = 10'd1000;
+                next_left_motor = 10'd1023;
                 next_right_motor = 10'd0;
             end
             Left: begin
                 next_left_motor = 10'd0;
-                next_right_motor = 10'd1000;
+                next_right_motor = 10'd1023;
             end
             Backward: begin
-                next_left_motor = 10'd1000;
-                next_right_motor = 10'd1000;
+                next_left_motor = 10'd1023;
+                next_right_motor = 10'd1023;
             end
         endcase
     end
