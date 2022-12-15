@@ -243,30 +243,9 @@ module state_control(clk, rst, down, up, A_v_count, B_v_count, C_v_count);
 			end
 		end
 	end
-	always@(*)begin
-        if(A_state == `STOP && B_state == `STOP && C_state == `STOP && (down == 1'b0 && up == 1'b0))begin
-			next_A_v_count = 10'd0;
-		end
-		else begin
-            next_A_v_count = (A_v_count + A_state >= 10'd240)? A_v_count + A_state - 10'd240: A_v_count + A_state;
-		end
-	end
-	always@(*)begin
-        if(A_state == `STOP && B_state == `STOP && C_state == `STOP && (down == 1'b0 && up == 1'b0))begin
-			next_B_v_count = 10'd0;
-		end
-		else begin
-            next_B_v_count = (B_v_count + B_state >= 10'd240)? B_v_count + B_state - 10'd240: B_v_count + B_state;
-		end
-	end
-	always@(*)begin
-        if(A_state == `STOP && B_state == `STOP && C_state == `STOP && (down == 1'b0 && up == 1'b0))begin
-			next_C_v_count = 10'd0;
-		end
-		else begin
-            next_C_v_count = (C_v_count + C_state >= 10'd240)? C_v_count + C_state - 10'd240: C_v_count + C_state;
-		end
-	end
+	assign next_A_v_count = (A_v_count + A_state >= 10'd240)? A_v_count + A_state - 10'd240: A_v_count + A_state;
+	assign next_B_v_count = (B_v_count + B_state >= 10'd240)? B_v_count + B_state - 10'd240: B_v_count + B_state;
+	assign next_C_v_count = (C_v_count + C_state >= 10'd240)? C_v_count + C_state - 10'd240: C_v_count + C_state;
 		
 endmodule
 
