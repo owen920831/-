@@ -4,8 +4,8 @@
 `define MID 10'd2
 `define SLOW 10'd1
 
-module Top(clk, rst, start, vgaRed, vgaBlue, vgaGreen, hsync, vsync);
-	input clk, rst, start;//button
+module Top(clk, rst, start, up, vgaRed, vgaBlue, vgaGreen, hsync, vsync);
+	input clk, rst, start, up;//button
     output [3:0] vgaRed, vgaGreen, vgaBlue;
     output hsync, vsync;
 	
@@ -21,9 +21,9 @@ module Top(clk, rst, start, vgaRed, vgaBlue, vgaGreen, hsync, vsync);
 	wire [9:0] A_v_count, B_v_count, C_v_count;
 	wire run;
 	//signals
-	wire start_db, rst_db;
-	wire start_op, rst_op;
-	
+	wire start_db, rst_db, up_db;
+	wire start_op, rst_op, up_op;
+	reg ctr;
 	assign h_cnt_re = h_cnt>>1;
 	assign v_cnt_re = v_cnt>>1;
 	
@@ -36,14 +36,16 @@ module Top(clk, rst, start, vgaRed, vgaBlue, vgaGreen, hsync, vsync);
 	//signals
 	debounce DB0(.s(start), .s_db(start_db), .clk(clk));
 	debounce DB1(.s(rst), .s_db(rst_db), .clk(clk));
+	debounce DB2(.s(up), .s_db(up_db), .clk(clk));
 	onepulse OP0(.s(start_db), .s_op(start_op), .clk(clk_d22));
 	onepulse OP1(.s(rst_db), .s_op(rst_op), .clk(clk_d22));
-	
+	onepulse OP2(.s(up_db), .s_op(up_op), .clk(clk_d22));
 	//control
 	state_control SC0(
 		.clk(clk_d22),
-		.rst(rst),
-		.start(start),
+		.rst(rst_op),
+		.start(start_op),
+		.up(up_op),
 		.A_v_count(A_v_count),
 		.B_v_count(B_v_count),
 		.C_v_count(C_v_count)
@@ -51,6 +53,7 @@ module Top(clk, rst, start, vgaRed, vgaBlue, vgaGreen, hsync, vsync);
 	mem_addr_gen MAG(
 		.h_cnt(h_cnt_re),
 		.v_cnt(v_cnt_re), 
+		.ctr(ctr),
 		.A_v_count(A_v_count),
 		.B_v_count(B_v_count),
 		.C_v_count(C_v_count),
@@ -68,13 +71,25 @@ module Top(clk, rst, start, vgaRed, vgaBlue, vgaGreen, hsync, vsync);
 
     vga_controller VC0(
         .pclk(clk_d2),
-        .reset(rst),
+        .reset(rst_op),
         .hsync(hsync),
         .vsync(vsync),
         .valid(valid),
         .h_cnt(h_cnt),
         .v_cnt(v_cnt)
     );
+    always@(posedge clk)begin
+       if(rst_op == 1'b1 || start_op == 1'b1)begin
+          ctr <= 1'b0;
+       end
+       else begin
+          if(up_op ==1'b1)begin
+             ctr <= 1'b1;
+          end
+          else ctr <= ctr;
+       end
+    
+    end
 	
 endmodule
 
@@ -114,17 +129,17 @@ module clk_div #(parameter n = 2)(clk, clk_d);
 	assign clk_d = count[n-1];
 endmodule
 
-module state_control(clk, rst, start, A_v_count, B_v_count, C_v_count);
-	input clk, rst, start;
+module state_control(clk, rst, start, up, A_v_count, B_v_count, C_v_count);
+	input clk, rst, start, up;
 	
 	reg [9:0]A_state, B_state, C_state; 
 	wire [9:0]next_A_state, next_B_state, next_C_state;
 	
 	reg [9:0]counter;
-	wire [9:0]next_counter;
+	reg [9:0]next_counter;
 	
 	output reg [9:0]A_v_count, B_v_count, C_v_count;
-	wire [9:0]next_A_v_count, next_B_v_count, next_C_v_count;
+	reg [9:0]next_A_v_count, next_B_v_count, next_C_v_count;
 	
 	reg [9:0]A_to, B_to, C_to;
 	
@@ -152,7 +167,7 @@ module state_control(clk, rst, start, A_v_count, B_v_count, C_v_count);
 	always@(*)begin
 		case(C_state)
 			`STOP:begin
-				C_to = (start==1'b1 && counter==10'd0)? `SLOW : `STOP;
+				C_to = ((start==1'b1 || up ==1'b1) && counter==10'd0)? `SLOW : `STOP;
 			end
 			`SLOW:begin
 				C_to = (counter>=10'd959)? `STOP : (counter>=10'd239 && counter<10'd359)? `MID : `SLOW;
@@ -168,7 +183,7 @@ module state_control(clk, rst, start, A_v_count, B_v_count, C_v_count);
 	always@(*)begin
 		case(B_state)
 			`STOP:begin
-				B_to = (start==1'b1 && counter==10'd0)? `SLOW : `STOP;
+				B_to = ((start==1'b1 || up==1'b1) && counter==10'd0)? `SLOW : `STOP;
 			end
 			`SLOW:begin
 				B_to = (counter>=10'd799)? `STOP : (counter>=10'd239 && counter<10'd359)? `MID : `SLOW;
@@ -184,7 +199,7 @@ module state_control(clk, rst, start, A_v_count, B_v_count, C_v_count);
 	always@(*)begin
 		case(A_state)
 			`STOP:begin
-				A_to = (start==1'b1 && counter==10'd0)? `SLOW : `STOP;
+				A_to = ((start==1'b1 || up==1'b1) && counter==10'd0)? `SLOW : `STOP;
 			end
 			`SLOW:begin
 				A_to = (counter>=10'd599)? `STOP : (counter>=10'd239 && counter<10'd359)? `MID : `SLOW;
@@ -198,27 +213,80 @@ module state_control(clk, rst, start, A_v_count, B_v_count, C_v_count);
 		endcase
 	end
 	
-	assign next_counter = ((start==1'b0 && counter==10'd0) || (counter >= 10'd1000))? counter : counter+1'b1;
+	
 	assign next_C_state = C_to;
 	assign next_B_state = B_to;
 	assign next_A_state = A_to;
-	
-	assign next_A_v_count = (A_v_count + A_state >= 10'd240)? A_v_count + A_state - 10'd240: A_v_count + A_state;
-	assign next_B_v_count = (B_v_count + B_state >= 10'd240)? B_v_count + B_state - 10'd240: B_v_count + B_state;
-	assign next_C_v_count = (C_v_count + C_state >= 10'd240)? C_v_count + C_state - 10'd240: C_v_count + C_state;
+	always@(*)begin
+        if(A_state == `STOP && B_state == `STOP && C_state == `STOP && (start == 1'b0 && up == 1'b0))begin
+			next_counter = 10'd0;
+		end
+		else begin
+            if((start==1'b0 && up ==1'b0 && counter==10'd0) || (counter >= 10'd1000))begin
+                next_counter = counter;
+			end
+			else begin
+                next_counter = counter+1'b1;
+			end
+		end
+	end
+	always@(*)begin
+        if(A_state == `STOP && B_state == `STOP && C_state == `STOP && (start == 1'b0 && up == 1'b0))begin
+			next_A_v_count = 10'd0;
+		end
+		else begin
+            if(A_v_count + A_state >= 10'd240)begin
+                next_A_v_count = A_v_count + A_state - 10'd240;
+			end
+			else begin
+                next_A_v_count = A_v_count + A_state;
+			end
+		end
+	end
+	always@(*)begin
+        if(A_state == `STOP && B_state == `STOP && C_state == `STOP && (start == 1'b0 && up == 1'b0))begin
+			next_B_v_count = 10'd0;
+		end
+		else begin
+            if(B_v_count + B_state >= 10'd240)begin
+                next_B_v_count = B_v_count + B_state - 10'd240;
+			end
+			else begin
+                next_B_v_count = B_v_count + B_state;
+			end
+		end
+	end
+	always@(*)begin
+        if(A_state == `STOP && B_state == `STOP && C_state == `STOP && (start == 1'b0 && up == 1'b0))begin
+			next_C_v_count = 10'd0;
+		end
+		else begin
+            if(C_v_count + C_state >= 10'd240)begin
+                next_C_v_count = C_v_count + C_state - 10'd240;
+			end
+			else begin
+                next_C_v_count = C_v_count + C_state;
+			end
+		end
+	end
+
 		
 endmodule
 
-module mem_addr_gen(h_cnt, v_cnt, A_v_count, B_v_count, C_v_count, pixel_addr);
+module mem_addr_gen(h_cnt, v_cnt, ctr, A_v_count, B_v_count, C_v_count, pixel_addr);
     input [9:0] h_cnt, v_cnt;
+    input ctr;
     input [9:0] A_v_count, B_v_count, C_v_count;
+    
     output[16:0] pixel_addr;
     
-    wire [16:0] v_cnt_new, v_cnt_total;
+    wire [16:0] v_cnt_new, v_cnt_total, vcnt1, vcnt2;
 	wire [16:0] v_mem;
 	
 	assign v_mem = (h_cnt < 10'd110)? A_v_count :(h_cnt > 10'd210)? C_v_count : B_v_count;
-	assign v_cnt_total = v_cnt + (16'd239 - v_mem);
+	assign vcnt1 = v_cnt + (16'd239 - v_mem);
+	assign vcnt2 = v_cnt + v_mem;
+	assign v_cnt_total = (ctr == 1'b1)?vcnt2:vcnt1;
 	assign v_cnt_new = (v_cnt_total >= 16'd239)? v_cnt_total - 16'd239 : v_cnt_total;
 	
 	assign pixel_addr = v_cnt_new*320 + h_cnt;	
@@ -248,7 +316,7 @@ module vga_controller(pclk, reset, hsync, vsync, valid, h_cnt, v_cnt);
     assign VT = 525;
     assign hsync_default = 1'b1;
     assign vsync_default = 1'b1;
-    
+     
     always@(posedge pclk)
         if(reset)
             pixel_cnt <= 0;
