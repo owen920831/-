@@ -68,27 +68,44 @@ module slave_control(clk, rst_n, request, ack, data_in, notice, valid, data);
         case(state)
             state_wait_rqst: begin
                 next_state = (request == 1)? state_wait_to_send_ack: state_wait_rqst;
-                // next_notice = ???
-                // next_ack = ???
-                // next_data = ???
-                // next_start = (request == 1)? ???: ???;
+                next_notice = 1'b0;
+                next_ack = 1'b0;
+                next_data = data;
+                next_start = (request == 1)? 1'b1: 1'b0;
             end
             state_wait_to_send_ack: begin
-                // next_state = (done == 1)? ??? : ???;
-                // next_notice = ???
-                // next_ack = ???
-                // next_data = ???
-                // next_start = ???
+                next_state = (done == 1)? state_wait_data : state_wait_to_send_ack;
+                next_notice = (done == 1) ? 1'b0 : 1'b1;
+                next_ack = (done == 1) ? 1'b1 : 1'b0;
+                next_data = data;
+                next_start = (done == 1'b1) ?  1'b0 : 1'b1;
             end
             state_wait_data: begin
-                // next_state = (valid == 1)? ??? : ???;
-                // next_notice = ???
-                // next_ack = ???
-                // next_data = ???
-                // next_start = ???
-            end
-            default: begin
+                next_state = (valid == 1)? state_wait_rqst : state_wait_data;
+                next_notice = 1'b0;
+                next_ack = 1;
+                next_data = (valid == 1) ? data_in : data;
+                next_start = 1'b0;
             end
         endcase
     end
 endmodule
+//////////////////////////////////////////////////////////////////////////////////
+// Company: NTHU
+// Engineer: Bob Cheng
+//
+// Create Date: 2019/08/25
+// Module Name:  slave_control
+// Project Name: Chip2Chip
+// Additional Comments: Control block for slave.
+// I/O:
+// clk           :clock signal.
+// rst_n         :reset signal, reset module when rst_n == 0.
+// request       :request signal sent by the master.
+// ack           :ack output to master.
+// data_in       :data input from master.
+// notice        :signal indicating the receive of data or request from master, will be asserted for 1 sec.
+// data          :data output to the seven segment module, in order to display the data from master.
+// valid         :signal from master indicating the current data_in is valid and is ready to be sampled.
+//////////////////////////////////////////////////////////////////////////////////
+

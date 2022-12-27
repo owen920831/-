@@ -2,6 +2,7 @@ module sonic_top(clk, rst, Echo, Trig, stop);
 	input clk, rst, Echo;
 	output Trig, stop;
 
+    wire stop;
 	wire[19:0] dis;
 	wire[19:0] d;
     wire clk1M;
@@ -13,6 +14,7 @@ module sonic_top(clk, rst, Echo, Trig, stop);
 
     // [TO-DO] calculate the right distance to trig stop(triggered when the distance is lower than 40 cm)
     // Hint: using "dis"
+    assign stop = (dis < 20'd4000) ? 1:0;
  
 endmodule
 
