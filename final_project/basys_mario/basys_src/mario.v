@@ -13,8 +13,8 @@ module mario(
 	 
 	wire [9:0] pixel_x, pixel_y;
 	wire video_on, pixel_tick;
-	reg [7:0] rgb_reg;
-	wire [7:0] rgb_next;
+	reg [11:0] rgb_reg;
+	wire [11:0] rgb_next;
 	
 	vga_sync vga_unit
 		(.clk(clk), .reset(reset), .hsync(hsync), .vsync(vsync),

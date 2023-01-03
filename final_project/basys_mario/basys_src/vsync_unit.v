@@ -23,7 +23,7 @@ localparam tamCont=1;
 //Declaración de variables
 //Parámetros para la sincronización vertical y horizontal.
 
-localparam HF=48;		//left border
+localparam HF=16;		//left border
 localparam HB=16;		//right border
 localparam HR=96;		//horizontal retrace 
 localparam VF=10;		//top border

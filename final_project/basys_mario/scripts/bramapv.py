@@ -17,11 +17,9 @@ try:
             for j in range(0,20):
                 byteStr = "{0:b}".format(int(row[j])).rjust(5,'0')
                 rows[j].append(byteStr)
-            i = i+1;
-
-    print rows[0]
-    print rows[14]
-
+            i = i+1
+    
+    
 
     with open(filename+'.out', 'wb') as f:
         s = 0

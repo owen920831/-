@@ -8,7 +8,7 @@ module bitmap_gen(
 	);
 	
 	parameter TRANSPARENT_COLOR = 12'b111101001111; //need change
-    parameter SKY_COLOR = 12'b111000011000; //need change
+    parameter SKY_COLOR = 12'b001010011000; //need change
 	
 	// Manejo de direcciones de memoria
 	wire [14-1:0] addr_next;
