@@ -1,31 +1,36 @@
-import sys
-import csv
-filename = sys.argv[1]
+import openpyxl
+import struct
 
+filename = 'map.xlsx'  # replace with your .xlsx file
 
 try:
-    with open(filename, 'r') as csvfile:
-        reader = csv.reader(csvfile, delimiter=',')
-        i = 0
-        rows = []
-        for row in reader:
-            if i == 0:
-                rows = []
-                for j in range(0,20):
-                    rows.append([])
+    # Read the data from the .xlsx file using openpyxl
+    workbook = openpyxl.load_workbook(filename)
+    sheet = workbook.active  # get the first sheet
+    sheet_data = []
+    for row in sheet.rows:
+        sheet_data.append([cell.value for cell in row])
 
-            for j in range(0,20):
-                byteStr = "{0:b}".format(int(row[j])).rjust(5,'0')
-                rows[j].append(byteStr)
-            i = i+1
+    # Process the data
+    processed_data = []
+    for row in sheet_data:
+        processed_row = []
+        for cell in row:
+            byte_str = "{0:b}".format(int(cell)).rjust(5, '0')
+            processed_row.append(byte_str)
+        processed_data.append(processed_row)
 
-    with open(filename+'.out', 'wb') as f:
+    # Write the processed data to the .bin file
+    with open('map.bin', 'wb') as f:
         s = 0
-        while(len(rows[0]) > s):
-            for i in range(0,20):
-                f.write('\n'.join(rows[i][s+0:s+15]))
-                f.write('\n')
+        while len(processed_data[0]) > s:
+            for i in range(0, 20):
+                # Pack the data into binary format using struct
+                binary_data = struct.pack('15s', '\n'.join(processed_data[i][s:s+15]))
+                # Write the binary data to the file
+                f.write(binary_data)
 
-            s = s+15
+            s += 15
+
 finally:
     pass

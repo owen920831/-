@@ -1,29 +1,34 @@
-import sys
-import csv
-import pyexcel_ods
+import openpyxl
+import numpy as np
 
-filename = sys.argv[1]
+filename = 'map.xlsx'  # replace with your .xlsx file
 
 try:
-    data = pyexcel_ods.get_data(filename)
-    sheet_data = data[list(data.keys())[0]]  # get the data from the first sheet
-    for row in sheet_data:
-        print(row)
-    rows = []
-    for j in range(0,20):
-        rows.append([])
-    for row in sheet_data:
-        for j in range(0,20):
-            byteStr = "{0:b}".format(int(row[j])).rjust(5,'0')
-            rows[j].append(byteStr)
+    # Read the data from the .xlsx file
+    workbook = openpyxl.load_workbook(filename)
+    sheet = workbook.active  # get the first sheet
+    sheet_data = []
+    for row in sheet.rows:
+        sheet_data.append([cell.value for cell in row])
 
-    with open(filename+'.bin', 'wb') as f:
+    # Process the data
+    processed_data = []
+    for row in sheet_data:
+        processed_row = []
+        for cell in row:
+            byte_str = "{0:b}".format(int(cell)).rjust(5, '0')
+            processed_row.append(byte_str)
+        processed_data.append(processed_row)
+
+    # Open the output file in binary write mode
+    with open('map.bin', 'wb') as f:
         s = 0
-        while(len(rows[0]) > s):
-            for i in range(0,20):
-                f.write('\n'.join(rows[i][s+0:s+15]))
-                f.write('\n')
-
+        while(len(processed_data) > s):
+            trans = np.array(processed_data[s:s+15]).T.tolist()
+            for string_slice in trans:
+                for string in string_slice:
+                    f.write(string.encode())
+                    f.write("\n".encode())
             s = s+15
 finally:
     pass
