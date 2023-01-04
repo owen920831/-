@@ -7,7 +7,7 @@
 // Module Name:  slave_control
 // Project Name: Chip2Chip
 // Additional Comments: Control block for slave.
-// I/O:
+// I/O: c
 // clk           :clock signal.
 // rst_n         :reset signal, reset module when rst_n == 0.
 // request       :request signal sent by the master.
