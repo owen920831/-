@@ -1,5 +1,4 @@
-module debounce
-( 
+module debounce( 
     input wire clk, reset,
     input wire sw,
     output reg db_level, db_tick
